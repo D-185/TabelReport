@@ -1,1620 +1,1545 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oil Analysis Report</title>
-    <style>
-        :root {
-            --primary-color: #004d40;
-            /* Deep Teal */
-            --accent-color: #f4a742;
-            /* Gold */
-            --text-color: #ffffff;
-            --table-bg: #e0f2f1;
-            /* Light teal */
-            --table-header-bg: #00796b;
-            /* Teal */
-            --table-border: #80cbc4;
-            /* Soft Gray */
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            /*background-color: var(--primary-color);*/
-            color: var(--text-color);
-            text-align: center;
-        }
-
-        header {
-            background-color: var(--table-header-bg);
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent-color);
-        }
-
-        .container {
-            max-width: 90%;
-            margin: auto;
-            padding: 20px;
-        }
-
-        h1 {
-            color: var(--primary-color);
-        }
-
-        h2 {
-            margin-top: 40px;
-            color: var(--accent-color);
-            text-transform: uppercase;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: var(--table-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        th,
-        td {
-            border: 1px solid var(--table-border);
-            padding: 12px;
-            text-align: left;
-            color: #333;
-            font-size: 12px;
-        }
-
-        th {
-            background-color: var(--table-header-bg);
-            color: var(--text-color);
-        }
-
-        tr:hover {
-            background-color: rgba(244, 167, 66, 0.3);
-            /* Light Gold Hover */
-        }
-
-        footer {
-            background-color: var(--table-header-bg);
-            padding: 10px;
-            margin-top: 50px;
-            font-size: 14px;
-            color: var(--text-color);
-        }
-
-        #metalsTable th,
-        #metalsTable td {
-            font-size: 10px;
-        }
-        .page-break {
-            page-break-before: always;
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-</head>
-
-<body>
-    <script>
-        const data = [
-            {
-                "id": 78,
-                "asset_number": "INVIO TN27998",
-                "asset_make_model": "Mazak/805G",
-                "component": 168,
-                "sample_location": "Louisiana Locations",
-                "company_name": 'Air Liquide',
-                "four_micron": 23,
-                "six_micron": 23,
-                "fourteen_micron": 44,
-                "sliding": 43,
-                "fiber": 89,
-                "cutting": 4,
-                "oil_temperature_unit": "F",
-                "oil_temperature": 32,
-                "fatigue": 0,
-                "submission_id_id": 117,
-                "image1": "",
-                "image2": "",
-                "image3": "",
-                "image4": "",
-                "image5": "",
-                "aluminum": 0,
-                "calcium": 0,
-                "chromium": 0,
-                "unknown": 24,
-                "iron": 0,
-                "mpc_value": 43,
-                "silicon": 0,
-                "tin": 0,
-                "acid_number_ftir": 0,
-                "acid_oxidation": 4,
-                "oil_ml": 5,
-                "sequence_1_stability": 435,
-                "barium": 0,
-                "sequence_1_tendency": 53,
-                "boron": 0,
-                "copper": 0,
-                "lead": 0,
-                "magnesium": 0,
-                "molybdenum": 0,
-                "nickel": 0,
-                "water_ml": 53,
-                "phosphorus": 0,
-                "potassium": 0,
-                "rpvot": 67,
-                "rust": "NA",
-                "silver": 0,
-                "sodium": 0,
-                "titanium": 0,
-                "vanadium": 0,
-                "zinc": 0,
-                "recommendations": "",
-                "results": "",
-                "testResults": {
-                    "notes": null,
-                    "compNo": 4299536533,
-                    "custNo": 4295258482,
-                    "histNo": 4308586294,
-                    "resample": "false",
-                    "extraTests": [],
-                    "histOilMfr": null,
-                    "oilChanged": "N",
-                    "oilService": 0,
-                    "rushSample": "false",
-                    "sampleDate": "2023-06-15",
-                    "postFailure": "false",
-                    "unitService": null,
-                    "customFields": [],
-                    "histOilBrand": null,
-                    "histOilGrade": null,
-                    "meterReading": null,
-                    "serviceUnits": null,
-                    "labTrackingNo": "1 - 4059064",
-                    "componentService": 0,
-                    "customerTrackingNo": "0"
-                },
-                "extra_info": {
-                    "notes": null,
-                    "compNo": 4299536533,
-                    "custNo": 4295258482,
-                    "histNo": 4308586294,
-                    "resample": "false",
-                    "extraTests": [],
-                    "histOilMfr": null,
-                    "oilChanged": "N",
-                    "oilService": 0,
-                    "rushSample": "false",
-                    "sampleDate": "2023-06-15",
-                    "postFailure": "false",
-                    "unitService": null,
-                    "customFields": [],
-                    "histOilBrand": null,
-                    "histOilGrade": null,
-                    "meterReading": null,
-                    "serviceUnits": null,
-                    "labTrackingNo": "1 - 4059064",
-                    "componentService": 0,
-                    "customerTrackingNo": "0"
-                },
-                "oilChanged": false,
-                "air_release": 0,
-                "antimony": 0,
-                "oil_estimated_hours": "",
-                "oil_type": "",
-                "beryllium": 0,
-                "copper_corrosion": 0,
-                "duration": 0,
-                "emulsion": 0,
-                "end_point": 0,
-                "grit": 0,
-                "iph": 0,
-                "iso_code": "",
-                "lithium": 0,
-                "temprature_c": 0,
-                "ruler_one_percent": 0,
-                "ruler_one_percent_area": 0,
-                "ruler_two_percent": 0,
-                "ruler_two_percent_area": 0,
-                "rust_test_water_type": 0,
-                "sample_taken_by": "",
-                "seventy_micron": 0,
-                "severity": "",
-                "tan": 0,
-                "thirty_eight_micron": 0,
-                "time_to_endpoint": 0,
-                "twenty_six_micron": 0,
-                "visc_fourty": 0,
-                "visc_hundred": 0,
-                "visc_index": 0,
-                "water_percentage": 0,
-                "water_separability_water_type": 0,
-                "date_sampled": "2023-06-15"
-            },
-            {
-                "id": 81,
-                "asset_number": "INVIO TN27998",
-                "asset_make_model": "Mazak/805G",
-                "component": 168,
-                "sample_location": "Reservoir",
-                "four_micron": 12,
-                "six_micron": 12,
-                "fourteen_micron": 2,
-                "sliding": 4,
-                "fiber": 8,
-                "cutting": 8,
-                "oil_temperature_unit": "F",
-                "oil_temperature": 208.4,
-                "fatigue": 9,
-                "submission_id_id": 122,
-                "image1": "",
-                "image2": "",
-                "image3": "",
-                "image4": "",
-                "image5": "",
-                "aluminum": 8,
-                "calcium": 5,
-                "chromium": 5,
-                "unknown": 8,
-                "iron": 10,
-                "mpc_value": 8,
-                "silicon": 9,
-                "tin": 5,
-                "acid_number_ftir": 5,
-                "acid_oxidation": 6,
-                "oil_ml": 8,
-                "sequence_1_stability": 6,
-                "barium": 5,
-                "sequence_1_tendency": 5,
-                "boron": 4,
-                "copper": 9,
-                "lead": 7,
-                "magnesium": 8,
-                "molybdenum": 9,
-                "nickel": 8,
-                "water_ml": 6,
-                "phosphorus": 6,
-                "potassium": 4,
-                "rpvot": 7,
-                "rust": "NA",
-                "silver": 9,
-                "sodium": 6,
-                "titanium": 8,
-                "vanadium": 5,
-                "zinc": 8,
-                "recommendations": "Change required in current oil sample to lower down viscocity.",
-                "results": "Viscocity exceeding recommended range.",
-                "testResults": {
-                    "notes": null,
-                    "compNo": 4299536533,
-                    "custNo": 4295258482,
-                    "histNo": 4308665100,
-                    "resample": "false",
-                    "extraTests": [],
-                    "histOilMfr": null,
-                    "oilChanged": "Y",
-                    "oilService": 0,
-                    "rushSample": "false",
-                    "sampleDate": "2023-07-11",
-                    "postFailure": "false",
-                    "unitService": null,
-                    "customFields": [],
-                    "histOilBrand": null,
-                    "histOilGrade": null,
-                    "meterReading": null,
-                    "serviceUnits": null,
-                    "labTrackingNo": "1 - 4086388",
-                    "componentService": 0,
-                    "customerTrackingNo": "0"
-                },
-                "extra_info": {
-                    "notes": null,
-                    "compNo": 4299536533,
-                    "custNo": 4295258482,
-                    "histNo": 4308665100,
-                    "resample": "false",
-                    "extraTests": [],
-                    "histOilMfr": null,
-                    "oilChanged": "Y",
-                    "oilService": 0,
-                    "rushSample": "false",
-                    "sampleDate": "2023-07-11",
-                    "postFailure": "false",
-                    "unitService": null,
-                    "customFields": [],
-                    "histOilBrand": null,
-                    "histOilGrade": null,
-                    "meterReading": null,
-                    "serviceUnits": null,
-                    "labTrackingNo": "1 - 4086388",
-                    "componentService": 0,
-                    "customerTrackingNo": "0"
-                },
-                "oilChanged": false,
-                "air_release": 0,
-                "antimony": 0,
-                "oil_estimated_hours": "",
-                "oil_type": "",
-                "beryllium": 0,
-                "copper_corrosion": 0,
-                "duration": 0,
-                "emulsion": 0,
-                "end_point": 0,
-                "grit": 0,
-                "iph": 0,
-                "iso_code": "",
-                "lithium": 0,
-                "temprature_c": 0,
-                "ruler_one_percent": 0,
-                "ruler_one_percent_area": 0,
-                "ruler_two_percent": 0,
-                "ruler_two_percent_area": 0,
-                "rust_test_water_type": 0,
-                "sample_taken_by": "",
-                "seventy_micron": 0,
-                "severity": "",
-                "tan": 0,
-                "thirty_eight_micron": 0,
-                "time_to_endpoint": 0,
-                "twenty_six_micron": 0,
-                "visc_fourty": 0,
-                "visc_hundred": 0,
-                "visc_index": 0,
-                "water_percentage": 0,
-                "water_separability_water_type": 0,
-                "date_sampled": "2023-06-16"
-            },
-            {
-                "id": 82,
-                "asset_number": "INVIO TN27998",
-                "asset_make_model": "Mazak/805G",
-                "component": 168,
-                "sample_location": "Reservoir",
-                "four_micron": 1,
-                "six_micron": 1,
-                "fourteen_micron": 1,
-                "sliding": 1,
-                "fiber": 1,
-                "cutting": 1,
-                "oil_temperature_unit": "F",
-                "oil_temperature": 33.8,
-                "fatigue": 1,
-                "submission_id_id": 136,
-                "image1": "",
-                "image2": "",
-                "image3": "",
-                "image4": "",
-                "image5": "",
-                "aluminum": 1,
-                "calcium": 1,
-                "chromium": 1,
-                "unknown": 1,
-                "iron": 1,
-                "mpc_value": 1,
-                "silicon": 1,
-                "tin": 1,
-                "acid_number_ftir": 1,
-                "acid_oxidation": 1,
-                "oil_ml": 1,
-                "sequence_1_stability": 1,
-                "barium": 1,
-                "sequence_1_tendency": 1,
-                "boron": 1,
-                "copper": 1,
-                "lead": 1,
-                "magnesium": 1,
-                "molybdenum": 1,
-                "nickel": 1,
-                "water_ml": 1,
-                "phosphorus": 1,
-                "potassium": 1,
-                "rpvot": 1,
-                "rust": "GGG",
-                "silver": 1,
-                "sodium": 1,
-                "titanium": 1,
-                "vanadium": 1,
-                "zinc": 1,
-                "recommendations": "change it",
-                "results": "clear",
-                "testResults": {
-                    "dd": "dD"
-                },
-                "extra_info": {
-                    "Ss": "sS"
-                },
-                "oilChanged": false,
-                "air_release": 0,
-                "antimony": 0,
-                "oil_estimated_hours": "",
-                "oil_type": "",
-                "beryllium": 0,
-                "copper_corrosion": 0,
-                "duration": 0,
-                "emulsion": 0,
-                "end_point": 0,
-                "grit": 0,
-                "iph": 0,
-                "iso_code": "",
-                "lithium": 0,
-                "temprature_c": 0,
-                "ruler_one_percent": 0,
-                "ruler_one_percent_area": 0,
-                "ruler_two_percent": 0,
-                "ruler_two_percent_area": 0,
-                "rust_test_water_type": 0,
-                "sample_taken_by": "",
-                "seventy_micron": 0,
-                "severity": "",
-                "tan": 0,
-                "thirty_eight_micron": 0,
-                "time_to_endpoint": 0,
-                "twenty_six_micron": 0,
-                "visc_fourty": 0,
-                "visc_hundred": 0,
-                "visc_index": 0,
-                "water_percentage": 0,
-                "water_separability_water_type": 0,
-                "date_sampled": "2023-06-17"
-            },
-            {
-                "id": 79,
-                "asset_number": "INVIO TN27998",
-                "asset_make_model": "Mazak/805G",
-                "component": 168,
-                "sample_location": "Reservoir",
-                "four_micron": 3,
-                "six_micron": 743,
-                "fourteen_micron": 327,
-                "sliding": 92,
-                "fiber": 83,
-                "cutting": 47,
-                "oil_temperature_unit": "F",
-                "oil_temperature": 208.4,
-                "fatigue": 46,
-                "submission_id_id": 118,
-                "image1": "images/4F9814CA-2649-4C25-8B60-DD25E171577C.png",
-                "image2": "images/F3125E83-8176-4AF2-9328-3428F9172180.png",
-                "image3": "images/Skype_Picture_2023_06_22T06_46_10_969Z.jpeg",
-                "image4": "",
-                "image5": "",
-                "aluminum": 8,
-                "calcium": 7,
-                "chromium": 9,
-                "unknown": 5,
-                "iron": 1,
-                "mpc_value": 4,
-                "silicon": 6,
-                "tin": 7,
-                "acid_number_ftir": 5,
-                "acid_oxidation": 4,
-                "oil_ml": 6,
-                "sequence_1_stability": 8,
-                "barium": 3,
-                "sequence_1_tendency": 7,
-                "boron": 4,
-                "copper": 48,
-                "lead": 2,
-                "magnesium": 7,
-                "molybdenum": 9,
-                "nickel": 8,
-                "water_ml": 5,
-                "phosphorus": 2,
-                "potassium": 2,
-                "rpvot": 13,
-                "rust": "Mild",
-                "silver": 8,
-                "sodium": 8,
-                "titanium": 7,
-                "vanadium": 4,
-                "zinc": 5,
-                "recommendations": "Recommendations for the sample",
-                "results": "These are the results for the sample",
-                "testResults": {
-                    "type": "Sample Results being submitted"
-                },
-                "extra_info": {
-                    "color": "Red And blue heu"
-                },
-                "oilChanged": true,
-                "air_release": 0,
-                "antimony": 0,
-                "oil_estimated_hours": "",
-                "oil_type": "",
-                "beryllium": 0,
-                "copper_corrosion": 0,
-                "duration": 0,
-                "emulsion": 0,
-                "end_point": 0,
-                "grit": 0,
-                "iph": 0,
-                "iso_code": "",
-                "lithium": 0,
-                "temprature_c": 0,
-                "ruler_one_percent": 0,
-                "ruler_one_percent_area": 0,
-                "ruler_two_percent": 0,
-                "ruler_two_percent_area": 0,
-                "rust_test_water_type": 0,
-                "sample_taken_by": "",
-                "seventy_micron": 0,
-                "severity": "",
-                "tan": 0,
-                "thirty_eight_micron": 0,
-                "time_to_endpoint": 0,
-                "twenty_six_micron": 0,
-                "visc_fourty": 0,
-                "visc_hundred": 0,
-                "visc_index": 0,
-                "water_percentage": 10,
-                "water_separability_water_type": 0,
-                "date_sampled": "2023-06-18"
-            },
-            {
-                "id": 83,
-                "asset_number": "INVIO TN27998",
-                "asset_make_model": "Mazak/805G",
-                "component": 168,
-                "sample_location": "Reservoir",
-                "four_micron": 0.097,
-                "six_micron": 0.049,
-                "fourteen_micron": -0.026,
-                "sliding": 0.013,
-                "fiber": -0.032,
-                "cutting": 0.022,
-                "oil_temperature_unit": "F",
-                "oil_temperature": 32,
-                "fatigue": -0.022,
-                "submission_id_id": 137,
-                "image1": "",
-                "image2": "",
-                "image3": "",
-                "image4": "",
-                "image5": "",
-                "aluminum": -0.074,
-                "calcium": 0.013,
-                "chromium": 0.06,
-                "unknown": -0.023,
-                "iron": 0.02,
-                "mpc_value": -0.02,
-                "silicon": 0.5,
-                "tin": 0.056,
-                "acid_number_ftir": 0.066,
-                "acid_oxidation": 0.026,
-                "oil_ml": -0.024,
-                "sequence_1_stability": -0.019,
-                "barium": 0.02,
-                "sequence_1_tendency": 0.025,
-                "boron": 0.013,
-                "copper": -0.078,
-                "lead": 0.062,
-                "magnesium": -0.01,
-                "molybdenum": -0.022,
-                "nickel": -0.065,
-                "water_ml": -0.031,
-                "phosphorus": 0.011,
-                "potassium": -0.035,
-                "rpvot": 0.16,
-                "rust": "rusting",
-                "silver": -0.038,
-                "sodium": 0.075,
-                "titanium": -0.062,
-                "vanadium": 0.069,
-                "zinc": -0.019,
-                "recommendations": "need to improve in oils",
-                "results": "the result is queit good",
-                "testResults": {
-                    "key": "value"
-                },
-                "extra_info": {
-                    "key": "value"
-                },
-                "oilChanged": true,
-                "air_release": 0.3,
-                "antimony": 0.61,
-                "oil_estimated_hours": "AE1",
-                "oil_type": "AS1",
-                "beryllium": -0.52,
-                "copper_corrosion": -0.08,
-                "duration": 0.22,
-                "emulsion": 0.8,
-                "end_point": 0.21,
-                "grit": 0.08,
-                "iph": 0.54,
-                "iso_code": 0.256,
-                "lithium": -0.6,
-                "temprature_c": 0.11,
-                "ruler_one_percent": 1.41,
-                "ruler_one_percent_area": 1.75,
-                "ruler_two_percent": 1.35,
-                "ruler_two_percent_area": 1.36,
-                "rust_test_water_type": -0.22,
-                "sample_taken_by": "nishu",
-                "seventy_micron": 1.51,
-                "severity": "QWERTY",
-                "tan": -0.2,
-                "thirty_eight_micron": 1.68,
-                "time_to_endpoint": -0.88,
-                "twenty_six_micron": 1.3,
-                "visc_fourty": 1.42,
-                "visc_hundred": -1.21,
-                "visc_index": -4,
-                "water_percentage": -0.00404,
-                "water_separability_water_type": -0.19,
-                "date_sampled": "2023-06-19"
-            },
-            {
-                "id": 84,
-                "asset_number": "INVIO TN27998",
-                "asset_make_model": "Mazak/805G",
-                "component": 168,
-                "sample_location": "Reservoir",
-                "four_micron": 0.015,
-                "six_micron": -0.015,
-                "fourteen_micron": 0.013,
-                "sliding": -0.014,
-                "fiber": 0.009,
-                "cutting": -0.012,
-                "oil_temperature_unit": "F",
-                "oil_temperature": 32,
-                "fatigue": 0.014,
-                "submission_id_id": 139,
-                "image1": "",
-                "image2": "",
-                "image3": "",
-                "image4": "",
-                "image5": "",
-                "aluminum": 2.035,
-                "calcium": 0.04,
-                "chromium": -0.02,
-                "unknown": 0.048,
-                "iron": 0.026,
-                "mpc_value": 0.011,
-                "silicon": 12.19,
-                "tin": -0.033,
-                "acid_number_ftir": -0.029,
-                "acid_oxidation": -0.025,
-                "oil_ml": -0.014,
-                "sequence_1_stability": -0.161,
-                "barium": 0.016,
-                "sequence_1_tendency": 0.012,
-                "boron": 0.029,
-                "copper": -0.022,
-                "lead": 0.07,
-                "magnesium": -0.032,
-                "molybdenum": -0.018,
-                "nickel": 3.52,
-                "water_ml": 0.014,
-                "phosphorus": 0.038,
-                "potassium": -0.021,
-                "rpvot": 0.03,
-                "rust": "tesstingrust",
-                "silver": -0.049,
-                "sodium": 0.018,
-                "titanium": -0.038,
-                "vanadium": 0.041,
-                "zinc": -0.041,
-                "recommendations": "need to improve oil",
-                "results": "result is quiet good",
-                "testResults": {
-                    "key": "value"
-                },
-                "extra_info": {
-                    "key": "value"
-                },
-                "oilChanged": true,
-                "air_release": 0.58,
-                "antimony": 0.15,
-                "oil_estimated_hours": "AE1",
-                "oil_type": "AS1",
-                "beryllium": -0.14,
-                "copper_corrosion": -0.18,
-                "duration": -0.5,
-                "emulsion": 0.62,
-                "end_point": 0.66,
-                "grit": -0.15,
-                "iph": 0.31,
-                "iso_code": "0.256be",
-                "lithium": -0.26,
-                "temprature_c": 0.24,
-                "ruler_one_percent": 0.47,
-                "ruler_one_percent_area": -0.45,
-                "ruler_two_percent": 0.16,
-                "ruler_two_percent_area": -0.19,
-                "rust_test_water_type": -0.38,
-                "sample_taken_by": "nishu",
-                "seventy_micron": -0.21,
-                "severity": "QWERTY",
-                "tan": 0.09,
-                "thirty_eight_micron": 0.17,
-                "time_to_endpoint": 0.01,
-                "twenty_six_micron": -0.15,
-                "visc_fourty": 0.4,
-                "visc_hundred": 0.14,
-                "visc_index": -5,
-                "water_percentage": -0.235,
-                "water_separability_water_type": 0.33,
-                "date_sampled": "2023-06-20"
-            },
-            {
-                "id": 85,
-                "asset_number": "INVIO TN27998",
-                "asset_make_model": "Mazak/805G",
-                "component": 168,
-                "sample_location": "Reservoir",
-                "four_micron": 1,
-                "six_micron": 1,
-                "fourteen_micron": 1,
-                "sliding": 1,
-                "fiber": 1,
-                "cutting": 1,
-                "oil_temperature_unit": "F",
-                "oil_temperature": 33.8,
-                "fatigue": 1,
-                "submission_id_id": 140,
-                "image1": "",
-                "image2": "",
-                "image3": "",
-                "image4": "",
-                "image5": "",
-                "aluminum": 1,
-                "calcium": 1,
-                "chromium": 1,
-                "unknown": 1,
-                "iron": 1,
-                "mpc_value": 1,
-                "silicon": 1,
-                "tin": 1,
-                "acid_number_ftir": 1,
-                "acid_oxidation": 1,
-                "oil_ml": 1,
-                "sequence_1_stability": 1,
-                "barium": 1,
-                "sequence_1_tendency": 1,
-                "boron": 0,
-                "copper": 1,
-                "lead": 1,
-                "magnesium": 1,
-                "molybdenum": 1,
-                "nickel": 1,
-                "water_ml": 1,
-                "phosphorus": 1,
-                "potassium": 1,
-                "rpvot": 1,
-                "rust": "NAAAA",
-                "silver": 1,
-                "sodium": 1,
-                "titanium": 1,
-                "vanadium": 1,
-                "zinc": 1,
-                "recommendations": "recommending better oil",
-                "results": "January first result",
-                "testResults": {
-                    "key": "value"
-                },
-                "extra_info": {
-                    "key": "value"
-                },
-                "oilChanged": false,
-                "air_release": 1,
-                "antimony": 1,
-                "oil_estimated_hours": "Asset estimated 2 jan 24",
-                "oil_type": "Asset Service 2 jan 24",
-                "beryllium": 1,
-                "copper_corrosion": 1,
-                "duration": 1,
-                "emulsion": 1,
-                "end_point": 1,
-                "grit": 1,
-                "iph": 1,
-                "iso_code": "1df",
-                "lithium": 1,
-                "temprature_c": 1,
-                "ruler_one_percent": 1,
-                "ruler_one_percent_area": 1,
-                "ruler_two_percent": 1,
-                "ruler_two_percent_area": 1,
-                "rust_test_water_type": 1,
-                "sample_taken_by": "Mathew",
-                "seventy_micron": 1,
-                "severity": "Severity 2 jan 24",
-                "tan": 1,
-                "thirty_eight_micron": 1,
-                "time_to_endpoint": 1,
-                "twenty_six_micron": 1,
-                "visc_fourty": 1,
-                "visc_hundred": 1,
-                "visc_index": 1,
-                "water_percentage": 1,
-                "water_separability_water_type": 1,
-                "date_sampled": "2023-06-21"
-            },
-            {
-                "id": 80,
-                "asset_number": "INVIO TN27998",
-                "asset_make_model": "Mazak/805G",
-                "component": 168,
-                "sample_location": "Reservoir",
-                "four_micron": 2,
-                "six_micron": 3.998,
-                "fourteen_micron": 8,
-                "sliding": 7,
-                "fiber": 7.998,
-                "cutting": 8,
-                "oil_temperature_unit": "F",
-                "oil_temperature": 46.4,
-                "fatigue": 8,
-                "submission_id_id": 119,
-                "image1": "images/4F9814CA-2649-4C25-8B60-DD25E171577C_W2TGIVu.png",
-                "image2": "images/F3125E83-8176-4AF2-9328-3428F9172180_wErqYyI.png",
-                "image3": "images/Skype_Picture_2023_06_22T06_46_10_969Z_TARBYPj.jpeg",
-                "image4": "",
-                "image5": "",
-                "aluminum": 8,
-                "calcium": 8,
-                "chromium": 8,
-                "unknown": 8,
-                "iron": 8,
-                "mpc_value": 8,
-                "silicon": 8,
-                "tin": 8,
-                "acid_number_ftir": 7.998,
-                "acid_oxidation": 8,
-                "oil_ml": 8,
-                "sequence_1_stability": 8,
-                "barium": 8,
-                "sequence_1_tendency": 5.998,
-                "boron": 8,
-                "copper": 8,
-                "lead": 8,
-                "magnesium": 8,
-                "molybdenum": 8,
-                "nickel": 8,
-                "water_ml": 8,
-                "phosphorus": 8,
-                "potassium": 8,
-                "rpvot": 8,
-                "rust": "nkf",
-                "silver": 8,
-                "sodium": 8,
-                "titanium": 8,
-                "vanadium": 8,
-                "zinc": 8,
-                "recommendations": "fkasjdfnalsd asdfkasdfk dafuifhaeouf adfuasd",
-                "results": "v fsdkjfhiadsfhaksdlfh adufhasdfil adkfasdkjfa msasidfha asksjfbasbfaskb",
-                "testResults": {
-                    "jfaskdjf": "Sfjkalisdfjasdfasdample Submission"
-                },
-                "extra_info": {
-                    "sdfjhsfjs": "a,fhkasjhfkasdhfkasdhfkasdhfkasd Submission"
-                },
-                "oilChanged": false,
-                "air_release": 0,
-                "antimony": 0,
-                "oil_estimated_hours": "",
-                "oil_type": "",
-                "beryllium": 0,
-                "copper_corrosion": 0,
-                "duration": 0,
-                "emulsion": 0,
-                "end_point": 0,
-                "grit": 0,
-                "iph": 0,
-                "iso_code": "",
-                "lithium": 0,
-                "temprature_c": 0,
-                "ruler_one_percent": 0,
-                "ruler_one_percent_area": 0,
-                "ruler_two_percent": 0,
-                "ruler_two_percent_area": 0,
-                "rust_test_water_type": 0,
-                "sample_taken_by": "",
-                "seventy_micron": 0,
-                "severity": "",
-                "tan": 0,
-                "thirty_eight_micron": 0,
-                "time_to_endpoint": 0,
-                "twenty_six_micron": 0,
-                "visc_fourty": 0,
-                "visc_hundred": 0,
-                "visc_index": 0,
-                "water_percentage": 0,
-                "water_separability_water_type": 0,
-                "date_sampled": "2023-06-22"
-            },
-            {
-                "id": 86,
-                "asset_number": "INVIO TN27998",
-                "asset_make_model": "Mazak/805G",
-                "component": 168,
-                "sample_location": "Reservoir",
-                "four_micron": 890,
-                "six_micron": 280,
-                "fourteen_micron": 50,
-                "sliding": 0,
-                "fiber": 0,
-                "cutting": 0,
-                "oil_temperature_unit": "F",
-                "oil_temperature": 2,
-                "fatigue": 0,
-                "submission_id_id": 141,
-                "image1": "",
-                "image2": "",
-                "image3": "",
-                "image4": "",
-                "image5": "",
-                "aluminum": 0,
-                "calcium": 42,
-                "chromium": 0,
-                "unknown": 0,
-                "iron": 0,
-                "mpc_value": 0,
-                "silicon": 0,
-                "tin": 0,
-                "acid_number_ftir": 0,
-                "acid_oxidation": 0,
-                "oil_ml": 0,
-                "sequence_1_stability": 0,
-                "barium": 0,
-                "sequence_1_tendency": 0,
-                "boron": 0,
-                "copper": 0,
-                "lead": 0,
-                "magnesium": 2,
-                "molybdenum": 0,
-                "nickel": 0,
-                "water_ml": 0,
-                "phosphorus": 328,
-                "potassium": 0,
-                "rpvot": 0,
-                "rust": 0,
-                "silver": 0,
-                "sodium": 0,
-                "titanium": 0,
-                "vanadium": 0,
-                "zinc": 406,
-                "recommendations": "recommendation",
-                "results": ".",
-                "testResults": {
-                    "key": "value"
-                },
-                "extra_info": {
-                    "key": "value"
-                },
-                "oilChanged": true,
-                "air_release": 0,
-                "antimony": 0,
-                "oil_estimated_hours": ".",
-                "oil_type": ".",
-                "beryllium": 0,
-                "copper_corrosion": 0,
-                "duration": 0,
-                "emulsion": 0,
-                "end_point": 0,
-                "grit": 0,
-                "iph": 0,
-                "iso_code": "17/15/13",
-                "lithium": 0,
-                "temprature_c": 0,
-                "ruler_one_percent": 0,
-                "ruler_one_percent_area": 0,
-                "ruler_two_percent": 0,
-                "ruler_two_percent_area": 0,
-                "rust_test_water_type": 0,
-                "sample_taken_by": ".",
-                "seventy_micron": 0,
-                "severity": 0,
-                "tan": 0,
-                "thirty_eight_micron": 0,
-                "time_to_endpoint": 0,
-                "twenty_six_micron": 0,
-                "visc_fourty": 46.5,
-                "visc_hundred": 6.85,
-                "visc_index": 102,
-                "water_percentage": 0,
-                "water_separability_water_type": 0,
-                "date_sampled": "2023-06-23"
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Oil Analysis Report</title>
+        <style>
+            :root {
+                --primary-color: #004d40;
+                /* Deep Teal */
+                --accent-color: #f4a742;
+                /* Gold */
+                --text-color: #ffffff;
+                --table-bg: #e0f2f1;
+                /* Light teal */
+                --table-header-bg: #00796b;
+                /* Teal */
+                --table-border: #80cbc4;
+                /* Soft Gray */
             }
-        ];
-        
-        const groupData = [[...data], [...data]]
-        const sampleData = [
-            {
-                "asset": "ALG Cogen",
-                "location": "GEISMAR",
-                "status": "Particle Count",
-                "date": "19/17/15",
-                "recommendation": "Recommend side-stream filtration. Particle count has been trending at cautionary/severe levels for several months now."
-            },
-            {
-                "asset": "ALG Unit 1 Expander",
-                "location": "GEISMAR",
-                "status": "Particle Count",
-                "date": "20/18/14",
-                "recommendation": "Recommend side-stream filtration. Particle count has been trending at cautionary/severe levels for several months now."
-            },
-            {
-                "asset": "ALP #4 H39/N40",
-                "location": "PLAQUEMINE",
-                "status": "Particle Count",
-                "date": "20/19/17",
-                "recommendation": "Resample & evaluate next month"
-            },
-            {
-                "asset": "ALN #3 C-103 MAC",
-                "location": "NORCO",
-                "status": "High Copper",
-                "date": "35 ppm",
-                "recommendation": "Increasingly high copper, suggesting bearing or cooler failure. Inspect unit during next outage."
+
+            body {
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+                /*background-color: var(--primary-color);*/
+                color: var(--text-color);
+                text-align: center;
             }
-        ];
-        const allData = {
-            curatedFor: {
-                name: "Neil Steagall",
-                company: "Air Liquide",
-                phone: "225-235-6136",
-                email: "Neil.steagall@airliquide.com"
-            },
-            curatedBy: {
-                name: "Zack Walsh",
-                company: "Firefly Reliability",
-                phone: "563-419-3340",
-                email: "zack@fireflyreliability.com"
-            },
-            locationDate: {
-                location: "Air Liquide Louisiana Locations",
-                date: "August 27, 2024"
-            },
-            groupData,
-            sampleData
-        };
-        
-    </script>
-    <style>
-        .container {
-            max-width: 800px;
-            margin: auto;
-            text-align: left;
-            color: #000;
-        }
 
-        h1 {
-            text-align: center;
-        }
+            header {
+                background-color: var(--table-header-bg);
+                padding: 20px;
+                font-size: 24px;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                color: var(--accent-color);
+            }
 
-        .highlight {
-            background-color: lightblue;
-            font-weight: bold;
-        }
+            .container {
+                max-width: 90%;
+                margin: auto;
+                padding: 20px;
+            }
 
-        .logos {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+            h1 {
+                color: var(--primary-color);
+            }
 
-        .logos img {
-            max-height: 80px;
-        }
+            h2 {
+                margin-top: 40px;
+                color: var(--accent-color);
+                text-transform: uppercase;
+            }
 
-        .legend {
-            float: right;
-            text-align: center;
-            margin-top: -50px;
-            color: #000;
-        }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                /* margin-top: 20px; */
+                background-color: var(--table-bg);
+                overflow: hidden;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            }
 
-        .legend img {
-            width: 120px;
-        }
+            th,
+            td {
+                border: 1px solid var(--table-border);
+                padding: 12px;
+                text-align: left;
+                color: #333;
+                font-size: 12px;
+            }
 
-        .section-title {
-            font-weight: bold;
-            text-decoration: underline;
-            margin-top: 20px;
-        }
+            th {
+                background-color: var(--table-header-bg);
+                color: var(--text-color);
+                width: 40px;
+            }
 
-        .list {
-            margin-left: 20px;
-        }
-    </style>
-    <style>
-        .basic-info {
-            padding: 20px;
-            text-align: center;
-        }
+            tr:hover {
+                background-color: rgba(244, 167, 66, 0.3);
+                /* Light Gold Hover */
+            }
 
-        .logo {
-            width: 200px;
-            margin: 0 auto;
-        }
+            footer {
+                background-color: var(--table-header-bg);
+                padding: 10px;
+                margin-top: 50px;
+                font-size: 14px;
+                color: var(--text-color);
+            }
 
-        .title {
-            font-size: 32px;
-            font-weight: bold;
-            margin-top: 10px;
-            text-align: center;
-        }
+            #metalsTable th,
+            #metalsTable td {
+                font-size: 10px;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    </head>
 
-        .info-box {
-            display: inline-block;
-            border: 1px solid black;
-            padding: 10px;
-            text-align: left;
-            margin: 20px;
-        }
+    <body>
+        <script>
+            const data = [
+                {
+                    "id": 78,
+                    "asset_number": "INVIO TN27998",
+                    "asset_make_model": "Mazak/805G",
+                    "component": 168,
+                    "sample_location": "Louisiana Locations",
+                    "company_name": 'Air Liquide',
+                    "water_ppm": 40000,
+                    "four_micron": 23,
+                    "six_micron": 23,
+                    "fourteen_micron": 44,
+                    "sliding": 43,
+                    "fiber": 89,
+                    "cutting": 4,
+                    "oil_temperature_unit": "F",
+                    "oil_temperature": 32,
+                    "fatigue": 0,
+                    "submission_id_id": 117,
+                    "image1": "",
+                    "image2": "",
+                    "image3": "",
+                    "image4": "",
+                    "image5": "",
+                    "aluminum": 0,
+                    "calcium": 0,
+                    "chromium": 0,
+                    "unknown": 24,
+                    "iron": 0,
+                    "mpc_value": 43,
+                    "silicon": 0,
+                    "tin": 0,
+                    "acid_number_ftir": 0,
+                    "acid_oxidation": 4,
+                    "oil_ml": 5,
+                    "sequence_1_stability": 435,
+                    "barium": 0,
+                    "sequence_1_tendency": 53,
+                    "boron": 0,
+                    "copper": 0,
+                    "lead": 0,
+                    "magnesium": 0,
+                    "molybdenum": 0,
+                    "nickel": 0,
+                    "water_ml": 53,
+                    "phosphorus": 0,
+                    "potassium": 0,
+                    "rpvot": 67,
+                    "rust": "NA",
+                    "silver": 0,
+                    "sodium": 0,
+                    "titanium": 0,
+                    "vanadium": 0,
+                    "zinc": 0,
+                    "recommendations": "",
+                    "results": "",
+                    "testResults": {
+                        "notes": null,
+                        "compNo": 4299536533,
+                        "custNo": 4295258482,
+                        "histNo": 4308586294,
+                        "resample": "false",
+                        "extraTests": [],
+                        "histOilMfr": null,
+                        "oilChanged": "N",
+                        "oilService": 0,
+                        "rushSample": "false",
+                        "sampleDate": "2023-06-15",
+                        "postFailure": "false",
+                        "unitService": null,
+                        "customFields": [],
+                        "histOilBrand": null,
+                        "histOilGrade": null,
+                        "meterReading": null,
+                        "serviceUnits": null,
+                        "labTrackingNo": "1 - 4059064",
+                        "componentService": 0,
+                        "customerTrackingNo": "0"
+                    },
+                    "extra_info": {
+                        "notes": null,
+                        "compNo": 4299536533,
+                        "custNo": 4295258482,
+                        "histNo": 4308586294,
+                        "resample": "false",
+                        "extraTests": [],
+                        "histOilMfr": null,
+                        "oilChanged": "N",
+                        "oilService": 0,
+                        "rushSample": "false",
+                        "sampleDate": "2023-06-15",
+                        "postFailure": "false",
+                        "unitService": null,
+                        "customFields": [],
+                        "histOilBrand": null,
+                        "histOilGrade": null,
+                        "meterReading": null,
+                        "serviceUnits": null,
+                        "labTrackingNo": "1 - 4059064",
+                        "componentService": 0,
+                        "customerTrackingNo": "0"
+                    },
+                    "oilChanged": false,
+                    "air_release": 0,
+                    "antimony": 0,
+                    "oil_estimated_hours": "",
+                    "oil_type": "",
+                    "beryllium": 0,
+                    "copper_corrosion": 0,
+                    "duration": 0,
+                    "emulsion": 0,
+                    "end_point": 0,
+                    "grit": 0,
+                    "iph": 0,
+                    "iso_code": "",
+                    "lithium": 0,
+                    "temprature_c": 0,
+                    "ruler_one_percent": 0,
+                    "ruler_one_percent_area": 0,
+                    "ruler_two_percent": 0,
+                    "ruler_two_percent_area": 0,
+                    "rust_test_water_type": 0,
+                    "sample_taken_by": "",
+                    "seventy_micron": 0,
+                    "severity": "",
+                    "tan": 0,
+                    "thirty_eight_micron": 0,
+                    "time_to_endpoint": 0,
+                    "twenty_six_micron": 0,
+                    "visc_fourty": 0,
+                    "visc_hundred": 0,
+                    "visc_index": 0,
+                    "water_percentage": 0,
+                    "water_separability_water_type": 0,
+                    "date_sampled": "2023-06-15"
+                },
+                {
+                    "id": 81,
+                    "asset_number": "INVIO TN27998",
+                    "asset_make_model": "Mazak/805G",
+                    "component": 168,
+                    "sample_location": "Reservoir",
+                    "water_ppm": 20000,
+                    "four_micron": 12,
+                    "six_micron": 12,
+                    "fourteen_micron": 2,
+                    "sliding": 4,
+                    "fiber": 8,
+                    "cutting": 8,
+                    "oil_temperature_unit": "F",
+                    "oil_temperature": 208.4,
+                    "fatigue": 9,
+                    "submission_id_id": 122,
+                    "image1": "",
+                    "image2": "",
+                    "image3": "",
+                    "image4": "",
+                    "image5": "",
+                    "aluminum": 8,
+                    "calcium": 5,
+                    "chromium": 5,
+                    "unknown": 8,
+                    "iron": 10,
+                    "mpc_value": 8,
+                    "silicon": 9,
+                    "tin": 5,
+                    "acid_number_ftir": 5,
+                    "acid_oxidation": 6,
+                    "oil_ml": 8,
+                    "sequence_1_stability": 6,
+                    "barium": 5,
+                    "sequence_1_tendency": 5,
+                    "boron": 4,
+                    "copper": 9,
+                    "lead": 7,
+                    "magnesium": 8,
+                    "molybdenum": 9,
+                    "nickel": 8,
+                    "water_ml": 6,
+                    "phosphorus": 6,
+                    "potassium": 4,
+                    "rpvot": 7,
+                    "rust": "NA",
+                    "silver": 9,
+                    "sodium": 6,
+                    "titanium": 8,
+                    "vanadium": 5,
+                    "zinc": 8,
+                    "recommendations": "Change required in current oil sample to lower down viscocity.",
+                    "results": "Viscocity exceeding recommended range.",
+                    "testResults": {
+                        "notes": null,
+                        "compNo": 4299536533,
+                        "custNo": 4295258482,
+                        "histNo": 4308665100,
+                        "resample": "false",
+                        "extraTests": [],
+                        "histOilMfr": null,
+                        "oilChanged": "Y",
+                        "oilService": 0,
+                        "rushSample": "false",
+                        "sampleDate": "2023-07-11",
+                        "postFailure": "false",
+                        "unitService": null,
+                        "customFields": [],
+                        "histOilBrand": null,
+                        "histOilGrade": null,
+                        "meterReading": null,
+                        "serviceUnits": null,
+                        "labTrackingNo": "1 - 4086388",
+                        "componentService": 0,
+                        "customerTrackingNo": "0"
+                    },
+                    "extra_info": {
+                        "notes": null,
+                        "compNo": 4299536533,
+                        "custNo": 4295258482,
+                        "histNo": 4308665100,
+                        "resample": "false",
+                        "extraTests": [],
+                        "histOilMfr": null,
+                        "oilChanged": "Y",
+                        "oilService": 0,
+                        "rushSample": "false",
+                        "sampleDate": "2023-07-11",
+                        "postFailure": "false",
+                        "unitService": null,
+                        "customFields": [],
+                        "histOilBrand": null,
+                        "histOilGrade": null,
+                        "meterReading": null,
+                        "serviceUnits": null,
+                        "labTrackingNo": "1 - 4086388",
+                        "componentService": 0,
+                        "customerTrackingNo": "0"
+                    },
+                    "oilChanged": false,
+                    "air_release": 0,
+                    "antimony": 0,
+                    "oil_estimated_hours": "",
+                    "oil_type": "",
+                    "beryllium": 0,
+                    "copper_corrosion": 0,
+                    "duration": 0,
+                    "emulsion": 0,
+                    "end_point": 0,
+                    "grit": 0,
+                    "iph": 0,
+                    "iso_code": "",
+                    "lithium": 0,
+                    "temprature_c": 0,
+                    "ruler_one_percent": 0,
+                    "ruler_one_percent_area": 0,
+                    "ruler_two_percent": 0,
+                    "ruler_two_percent_area": 0,
+                    "rust_test_water_type": 0,
+                    "sample_taken_by": "",
+                    "seventy_micron": 0,
+                    "severity": "",
+                    "tan": 0,
+                    "thirty_eight_micron": 0,
+                    "time_to_endpoint": 0,
+                    "twenty_six_micron": 0,
+                    "visc_fourty": 0,
+                    "visc_hundred": 0,
+                    "visc_index": 0,
+                    "water_percentage": 0,
+                    "water_separability_water_type": 0,
+                    "date_sampled": "2023-06-16"
+                },
+                {
+                    "id": 82,
+                    "asset_number": "INVIO TN27998",
+                    "asset_make_model": "Mazak/805G",
+                    "component": 168,
+                    "sample_location": "Reservoir",
+                    "water_ppm": 10000,
+                    "four_micron": 1,
+                    "six_micron": 1,
+                    "fourteen_micron": 1,
+                    "sliding": 1,
+                    "fiber": 1,
+                    "cutting": 1,
+                    "oil_temperature_unit": "F",
+                    "oil_temperature": 33.8,
+                    "fatigue": 1,
+                    "submission_id_id": 136,
+                    "image1": "",
+                    "image2": "",
+                    "image3": "",
+                    "image4": "",
+                    "image5": "",
+                    "aluminum": 1,
+                    "calcium": 1,
+                    "chromium": 1,
+                    "unknown": 1,
+                    "iron": 1,
+                    "mpc_value": 1,
+                    "silicon": 1,
+                    "tin": 1,
+                    "acid_number_ftir": 1,
+                    "acid_oxidation": 1,
+                    "oil_ml": 1,
+                    "sequence_1_stability": 1,
+                    "barium": 1,
+                    "sequence_1_tendency": 1,
+                    "boron": 1,
+                    "copper": 1,
+                    "lead": 1,
+                    "magnesium": 1,
+                    "molybdenum": 1,
+                    "nickel": 1,
+                    "water_ml": 1,
+                    "phosphorus": 1,
+                    "potassium": 1,
+                    "rpvot": 1,
+                    "rust": "GGG",
+                    "silver": 1,
+                    "sodium": 1,
+                    "titanium": 1,
+                    "vanadium": 1,
+                    "zinc": 1,
+                    "recommendations": "change it",
+                    "results": "clear",
+                    "testResults": {
+                        "dd": "dD"
+                    },
+                    "extra_info": {
+                        "Ss": "sS"
+                    },
+                    "oilChanged": false,
+                    "air_release": 0,
+                    "antimony": 0,
+                    "oil_estimated_hours": "",
+                    "oil_type": "",
+                    "beryllium": 0,
+                    "copper_corrosion": 0,
+                    "duration": 0,
+                    "emulsion": 0,
+                    "end_point": 0,
+                    "grit": 0,
+                    "iph": 0,
+                    "iso_code": "",
+                    "lithium": 0,
+                    "temprature_c": 0,
+                    "ruler_one_percent": 0,
+                    "ruler_one_percent_area": 0,
+                    "ruler_two_percent": 0,
+                    "ruler_two_percent_area": 0,
+                    "rust_test_water_type": 0,
+                    "sample_taken_by": "",
+                    "seventy_micron": 0,
+                    "severity": "",
+                    "tan": 0,
+                    "thirty_eight_micron": 0,
+                    "time_to_endpoint": 0,
+                    "twenty_six_micron": 0,
+                    "visc_fourty": 0,
+                    "visc_hundred": 0,
+                    "visc_index": 0,
+                    "water_percentage": 0,
+                    "water_separability_water_type": 0,
+                    "date_sampled": "2023-06-17"
+                },
+                {
+                    "id": 79,
+                    "asset_number": "INVIO TN27998",
+                    "asset_make_model": "Mazak/805G",
+                    "component": 168,
+                    "sample_location": "Reservoir",
+                    "water_ppm": 23000,
+                    "four_micron": 3,
+                    "six_micron": 743,
+                    "fourteen_micron": 327,
+                    "sliding": 92,
+                    "fiber": 83,
+                    "cutting": 47,
+                    "oil_temperature_unit": "F",
+                    "oil_temperature": 208.4,
+                    "fatigue": 46,
+                    "submission_id_id": 118,
+                    "image1": "images/4F9814CA-2649-4C25-8B60-DD25E171577C.png",
+                    "image2": "images/F3125E83-8176-4AF2-9328-3428F9172180.png",
+                    "image3": "images/Skype_Picture_2023_06_22T06_46_10_969Z.jpeg",
+                    "image4": "",
+                    "image5": "",
+                    "aluminum": 8,
+                    "calcium": 7,
+                    "chromium": 9,
+                    "unknown": 5,
+                    "iron": 1,
+                    "mpc_value": 4,
+                    "silicon": 6,
+                    "tin": 7,
+                    "acid_number_ftir": 5,
+                    "acid_oxidation": 4,
+                    "oil_ml": 6,
+                    "sequence_1_stability": 8,
+                    "barium": 3,
+                    "sequence_1_tendency": 7,
+                    "boron": 4,
+                    "copper": 48,
+                    "lead": 2,
+                    "magnesium": 7,
+                    "molybdenum": 9,
+                    "nickel": 8,
+                    "water_ml": 5,
+                    "phosphorus": 2,
+                    "potassium": 2,
+                    "rpvot": 13,
+                    "rust": "Mild",
+                    "silver": 8,
+                    "sodium": 8,
+                    "titanium": 7,
+                    "vanadium": 4,
+                    "zinc": 5,
+                    "recommendations": "Recommendations for the sample",
+                    "results": "These are the results for the sample",
+                    "testResults": {
+                        "type": "Sample Results being submitted"
+                    },
+                    "extra_info": {
+                        "color": "Red And blue heu"
+                    },
+                    "oilChanged": true,
+                    "air_release": 0,
+                    "antimony": 0,
+                    "oil_estimated_hours": "",
+                    "oil_type": "",
+                    "beryllium": 0,
+                    "copper_corrosion": 0,
+                    "duration": 0,
+                    "emulsion": 0,
+                    "end_point": 0,
+                    "grit": 0,
+                    "iph": 0,
+                    "iso_code": "",
+                    "lithium": 0,
+                    "temprature_c": 0,
+                    "ruler_one_percent": 0,
+                    "ruler_one_percent_area": 0,
+                    "ruler_two_percent": 0,
+                    "ruler_two_percent_area": 0,
+                    "rust_test_water_type": 0,
+                    "sample_taken_by": "",
+                    "seventy_micron": 0,
+                    "severity": "",
+                    "tan": 0,
+                    "thirty_eight_micron": 0,
+                    "time_to_endpoint": 0,
+                    "twenty_six_micron": 0,
+                    "visc_fourty": 0,
+                    "visc_hundred": 0,
+                    "visc_index": 0,
+                    "water_percentage": 10,
+                    "water_separability_water_type": 0,
+                    "date_sampled": "2023-06-18"
+                },
+                {
+                    "id": 83,
+                    "asset_number": "INVIO TN27998",
+                    "asset_make_model": "Mazak/805G",
+                    "component": 168,
+                    "sample_location": "Reservoir",
+                    "water_ppm": 16500,
+                    "four_micron": 0.097,
+                    "six_micron": 0.049,
+                    "fourteen_micron": -0.026,
+                    "sliding": 0.013,
+                    "fiber": -0.032,
+                    "cutting": 0.022,
+                    "oil_temperature_unit": "F",
+                    "oil_temperature": 32,
+                    "fatigue": -0.022,
+                    "submission_id_id": 137,
+                    "image1": "",
+                    "image2": "",
+                    "image3": "",
+                    "image4": "",
+                    "image5": "",
+                    "aluminum": -0.074,
+                    "calcium": 0.013,
+                    "chromium": 0.06,
+                    "unknown": -0.023,
+                    "iron": 0.02,
+                    "mpc_value": -0.02,
+                    "silicon": 0.5,
+                    "tin": 0.056,
+                    "acid_number_ftir": 0.066,
+                    "acid_oxidation": 0.026,
+                    "oil_ml": -0.024,
+                    "sequence_1_stability": -0.019,
+                    "barium": 0.02,
+                    "sequence_1_tendency": 0.025,
+                    "boron": 0.013,
+                    "copper": -0.078,
+                    "lead": 0.062,
+                    "magnesium": -0.01,
+                    "molybdenum": -0.022,
+                    "nickel": -0.065,
+                    "water_ml": -0.031,
+                    "phosphorus": 0.011,
+                    "potassium": -0.035,
+                    "rpvot": 0.16,
+                    "rust": "rusting",
+                    "silver": -0.038,
+                    "sodium": 0.075,
+                    "titanium": -0.062,
+                    "vanadium": 0.069,
+                    "zinc": -0.019,
+                    "recommendations": "need to improve in oils",
+                    "results": "the result is queit good",
+                    "testResults": {
+                        "key": "value"
+                    },
+                    "extra_info": {
+                        "key": "value"
+                    },
+                    "oilChanged": true,
+                    "air_release": 0.3,
+                    "antimony": 0.61,
+                    "oil_estimated_hours": "AE1",
+                    "oil_type": "AS1",
+                    "beryllium": -0.52,
+                    "copper_corrosion": -0.08,
+                    "duration": 0.22,
+                    "emulsion": 0.8,
+                    "end_point": 0.21,
+                    "grit": 0.08,
+                    "iph": 0.54,
+                    "iso_code": 0.256,
+                    "lithium": -0.6,
+                    "temprature_c": 0.11,
+                    "ruler_one_percent": 1.41,
+                    "ruler_one_percent_area": 1.75,
+                    "ruler_two_percent": 1.35,
+                    "ruler_two_percent_area": 1.36,
+                    "rust_test_water_type": -0.22,
+                    "sample_taken_by": "nishu",
+                    "seventy_micron": 1.51,
+                    "severity": "QWERTY",
+                    "tan": -0.2,
+                    "thirty_eight_micron": 1.68,
+                    "time_to_endpoint": -0.88,
+                    "twenty_six_micron": 1.3,
+                    "visc_fourty": 1.42,
+                    "visc_hundred": -1.21,
+                    "visc_index": -4,
+                    "water_percentage": -0.00404,
+                    "water_separability_water_type": -0.19,
+                    "date_sampled": "2023-06-19"
+                },
+                {
+                    "id": 84,
+                    "asset_number": "INVIO TN27998",
+                    "asset_make_model": "Mazak/805G",
+                    "component": 168,
+                    "sample_location": "Reservoir",
+                    "four_micron": 0.015,
+                    "six_micron": -0.015,
+                    "fourteen_micron": 0.013,
+                    "sliding": -0.014,
+                    "fiber": 0.009,
+                    "cutting": -0.012,
+                    "oil_temperature_unit": "F",
+                    "oil_temperature": 32,
+                    "fatigue": 0.014,
+                    "submission_id_id": 139,
+                    "image1": "",
+                    "image2": "",
+                    "image3": "",
+                    "image4": "",
+                    "image5": "",
+                    "aluminum": 2.035,
+                    "calcium": 0.04,
+                    "chromium": -0.02,
+                    "unknown": 0.048,
+                    "iron": 0.026,
+                    "mpc_value": 0.011,
+                    "silicon": 12.19,
+                    "tin": -0.033,
+                    "acid_number_ftir": -0.029,
+                    "acid_oxidation": -0.025,
+                    "oil_ml": -0.014,
+                    "sequence_1_stability": -0.161,
+                    "barium": 0.016,
+                    "sequence_1_tendency": 0.012,
+                    "boron": 0.029,
+                    "copper": -0.022,
+                    "lead": 0.07,
+                    "magnesium": -0.032,
+                    "molybdenum": -0.018,
+                    "nickel": 3.52,
+                    "water_ml": 0.014,
+                    "phosphorus": 0.038,
+                    "potassium": -0.021,
+                    "rpvot": 0.03,
+                    "rust": "tesstingrust",
+                    "silver": -0.049,
+                    "sodium": 0.018,
+                    "titanium": -0.038,
+                    "vanadium": 0.041,
+                    "zinc": -0.041,
+                    "recommendations": "need to improve oil",
+                    "results": "result is quiet good",
+                    "testResults": {
+                        "key": "value"
+                    },
+                    "extra_info": {
+                        "key": "value"
+                    },
+                    "oilChanged": true,
+                    "air_release": 0.58,
+                    "antimony": 0.15,
+                    "oil_estimated_hours": "AE1",
+                    "oil_type": "AS1",
+                    "beryllium": -0.14,
+                    "copper_corrosion": -0.18,
+                    "duration": -0.5,
+                    "emulsion": 0.62,
+                    "end_point": 0.66,
+                    "grit": -0.15,
+                    "iph": 0.31,
+                    "iso_code": "0.256be",
+                    "lithium": -0.26,
+                    "temprature_c": 0.24,
+                    "ruler_one_percent": 0.47,
+                    "ruler_one_percent_area": -0.45,
+                    "ruler_two_percent": 0.16,
+                    "ruler_two_percent_area": -0.19,
+                    "rust_test_water_type": -0.38,
+                    "sample_taken_by": "nishu",
+                    "seventy_micron": -0.21,
+                    "severity": "QWERTY",
+                    "tan": 0.09,
+                    "thirty_eight_micron": 0.17,
+                    "time_to_endpoint": 0.01,
+                    "twenty_six_micron": -0.15,
+                    "visc_fourty": 0.4,
+                    "visc_hundred": 0.14,
+                    "visc_index": -5,
+                    "water_percentage": -0.235,
+                    "water_separability_water_type": 0.33,
+                    "date_sampled": "2023-06-20"
+                },
+                {
+                    "id": 85,
+                    "asset_number": "INVIO TN27998",
+                    "asset_make_model": "Mazak/805G",
+                    "component": 168,
+                    "sample_location": "Reservoir",
+                    "four_micron": 1,
+                    "six_micron": 1,
+                    "fourteen_micron": 1,
+                    "sliding": 1,
+                    "fiber": 1,
+                    "cutting": 1,
+                    "oil_temperature_unit": "F",
+                    "oil_temperature": 33.8,
+                    "fatigue": 1,
+                    "submission_id_id": 140,
+                    "image1": "",
+                    "image2": "",
+                    "image3": "",
+                    "image4": "",
+                    "image5": "",
+                    "aluminum": 1,
+                    "calcium": 1,
+                    "chromium": 1,
+                    "unknown": 1,
+                    "iron": 1,
+                    "mpc_value": 1,
+                    "silicon": 1,
+                    "tin": 1,
+                    "acid_number_ftir": 1,
+                    "acid_oxidation": 1,
+                    "oil_ml": 1,
+                    "sequence_1_stability": 1,
+                    "barium": 1,
+                    "sequence_1_tendency": 1,
+                    "boron": 0,
+                    "copper": 1,
+                    "lead": 1,
+                    "magnesium": 1,
+                    "molybdenum": 1,
+                    "nickel": 1,
+                    "water_ml": 1,
+                    "phosphorus": 1,
+                    "potassium": 1,
+                    "rpvot": 1,
+                    "rust": "NAAAA",
+                    "silver": 1,
+                    "sodium": 1,
+                    "titanium": 1,
+                    "vanadium": 1,
+                    "zinc": 1,
+                    "recommendations": "recommending better oil",
+                    "results": "January first result",
+                    "testResults": {
+                        "key": "value"
+                    },
+                    "extra_info": {
+                        "key": "value"
+                    },
+                    "oilChanged": false,
+                    "air_release": 1,
+                    "antimony": 1,
+                    "oil_estimated_hours": "Asset estimated 2 jan 24",
+                    "oil_type": "Asset Service 2 jan 24",
+                    "beryllium": 1,
+                    "copper_corrosion": 1,
+                    "duration": 1,
+                    "emulsion": 1,
+                    "end_point": 1,
+                    "grit": 1,
+                    "iph": 1,
+                    "iso_code": "1df",
+                    "lithium": 1,
+                    "temprature_c": 1,
+                    "ruler_one_percent": 1,
+                    "ruler_one_percent_area": 1,
+                    "ruler_two_percent": 1,
+                    "ruler_two_percent_area": 1,
+                    "rust_test_water_type": 1,
+                    "sample_taken_by": "Mathew",
+                    "seventy_micron": 1,
+                    "severity": "Severity 2 jan 24",
+                    "tan": 1,
+                    "thirty_eight_micron": 1,
+                    "time_to_endpoint": 1,
+                    "twenty_six_micron": 1,
+                    "visc_fourty": 1,
+                    "visc_hundred": 1,
+                    "visc_index": 1,
+                    "water_percentage": 1,
+                    "water_separability_water_type": 1,
+                    "date_sampled": "2023-06-21"
+                },
+                {
+                    "id": 80,
+                    "asset_number": "INVIO TN27998",
+                    "asset_make_model": "Mazak/805G",
+                    "component": 168,
+                    "sample_location": "Reservoir",
+                    "four_micron": 2,
+                    "six_micron": 3.998,
+                    "fourteen_micron": 8,
+                    "sliding": 7,
+                    "fiber": 7.998,
+                    "cutting": 8,
+                    "oil_temperature_unit": "F",
+                    "oil_temperature": 46.4,
+                    "fatigue": 8,
+                    "submission_id_id": 119,
+                    "image1": "images/4F9814CA-2649-4C25-8B60-DD25E171577C_W2TGIVu.png",
+                    "image2": "images/F3125E83-8176-4AF2-9328-3428F9172180_wErqYyI.png",
+                    "image3": "images/Skype_Picture_2023_06_22T06_46_10_969Z_TARBYPj.jpeg",
+                    "image4": "",
+                    "image5": "",
+                    "aluminum": 8,
+                    "calcium": 8,
+                    "chromium": 8,
+                    "unknown": 8,
+                    "iron": 8,
+                    "mpc_value": 8,
+                    "silicon": 8,
+                    "tin": 8,
+                    "acid_number_ftir": 7.998,
+                    "acid_oxidation": 8,
+                    "oil_ml": 8,
+                    "sequence_1_stability": 8,
+                    "barium": 8,
+                    "sequence_1_tendency": 5.998,
+                    "boron": 8,
+                    "copper": 8,
+                    "lead": 8,
+                    "magnesium": 8,
+                    "molybdenum": 8,
+                    "nickel": 8,
+                    "water_ml": 8,
+                    "phosphorus": 8,
+                    "potassium": 8,
+                    "rpvot": 8,
+                    "rust": "nkf",
+                    "silver": 8,
+                    "sodium": 8,
+                    "titanium": 8,
+                    "vanadium": 8,
+                    "zinc": 8,
+                    "recommendations": "fkasjdfnalsd asdfkasdfk dafuifhaeouf adfuasd",
+                    "results": "v fsdkjfhiadsfhaksdlfh adufhasdfil adkfasdkjfa msasidfha asksjfbasbfaskb",
+                    "testResults": {
+                        "jfaskdjf": "Sfjkalisdfjasdfasdample Submission"
+                    },
+                    "extra_info": {
+                        "sdfjhsfjs": "a,fhkasjhfkasdhfkasdhfkasdhfkasd Submission"
+                    },
+                    "oilChanged": false,
+                    "air_release": 0,
+                    "antimony": 0,
+                    "oil_estimated_hours": "",
+                    "oil_type": "",
+                    "beryllium": 0,
+                    "copper_corrosion": 0,
+                    "duration": 0,
+                    "emulsion": 0,
+                    "end_point": 0,
+                    "grit": 0,
+                    "iph": 0,
+                    "iso_code": "",
+                    "lithium": 0,
+                    "temprature_c": 0,
+                    "ruler_one_percent": 0,
+                    "ruler_one_percent_area": 0,
+                    "ruler_two_percent": 0,
+                    "ruler_two_percent_area": 0,
+                    "rust_test_water_type": 0,
+                    "sample_taken_by": "",
+                    "seventy_micron": 0,
+                    "severity": "",
+                    "tan": 0,
+                    "thirty_eight_micron": 0,
+                    "time_to_endpoint": 0,
+                    "twenty_six_micron": 0,
+                    "visc_fourty": 0,
+                    "visc_hundred": 0,
+                    "visc_index": 0,
+                    "water_percentage": 0,
+                    "water_separability_water_type": 0,
+                    "date_sampled": "2023-06-22"
+                },
+                {
+                    "id": 86,
+                    "asset_number": "INVIO TN27998",
+                    "asset_make_model": "Mazak/805G",
+                    "component": 168,
+                    "sample_location": "Reservoir",
+                    "four_micron": 890,
+                    "six_micron": 280,
+                    "fourteen_micron": 50,
+                    "sliding": 0,
+                    "fiber": 0,
+                    "cutting": 0,
+                    "oil_temperature_unit": "F",
+                    "oil_temperature": 2,
+                    "fatigue": 0,
+                    "submission_id_id": 141,
+                    "image1": "",
+                    "image2": "",
+                    "image3": "",
+                    "image4": "",
+                    "image5": "",
+                    "aluminum": 0,
+                    "calcium": 42,
+                    "chromium": 0,
+                    "unknown": 0,
+                    "iron": 0,
+                    "mpc_value": 0,
+                    "silicon": 0,
+                    "tin": 0,
+                    "acid_number_ftir": 0,
+                    "acid_oxidation": 0,
+                    "oil_ml": 0,
+                    "sequence_1_stability": 0,
+                    "barium": 0,
+                    "sequence_1_tendency": 0,
+                    "boron": 0,
+                    "copper": 0,
+                    "lead": 0,
+                    "magnesium": 2,
+                    "molybdenum": 0,
+                    "nickel": 0,
+                    "water_ml": 0,
+                    "phosphorus": 328,
+                    "potassium": 0,
+                    "rpvot": 0,
+                    "rust": 0,
+                    "silver": 0,
+                    "sodium": 0,
+                    "titanium": 0,
+                    "vanadium": 0,
+                    "zinc": 406,
+                    "recommendations": "recommendation",
+                    "results": ".",
+                    "testResults": {
+                        "key": "value"
+                    },
+                    "extra_info": {
+                        "key": "value"
+                    },
+                    "oilChanged": true,
+                    "air_release": 0,
+                    "antimony": 0,
+                    "oil_estimated_hours": ".",
+                    "oil_type": ".",
+                    "beryllium": 0,
+                    "copper_corrosion": 0,
+                    "duration": 0,
+                    "emulsion": 0,
+                    "end_point": 0,
+                    "grit": 0,
+                    "iph": 0,
+                    "iso_code": "17/15/13",
+                    "lithium": 0,
+                    "temprature_c": 0,
+                    "ruler_one_percent": 0,
+                    "ruler_one_percent_area": 0,
+                    "ruler_two_percent": 0,
+                    "ruler_two_percent_area": 0,
+                    "rust_test_water_type": 0,
+                    "sample_taken_by": ".",
+                    "seventy_micron": 0,
+                    "severity": 0,
+                    "tan": 0,
+                    "thirty_eight_micron": 0,
+                    "time_to_endpoint": 0,
+                    "twenty_six_micron": 0,
+                    "visc_fourty": 46.5,
+                    "visc_hundred": 6.85,
+                    "visc_index": 102,
+                    "water_percentage": 0,
+                    "water_separability_water_type": 0,
+                    "date_sampled": "2023-06-23"
+                }
+            ];
+            
+            const groupData = [[...data], [...data]]
+            const sampleData = [
+                {
+                    "asset": "ALG Cogen",
+                    "location": "GEISMAR",
+                    "status": "Particle Count",
+                    "date": "19/17/15",
+                    "recommendation": "Recommend side-stream filtration. Particle count has been trending at cautionary/severe levels for several months now."
+                },
+                {
+                    "asset": "ALG Unit 1 Expander",
+                    "location": "GEISMAR",
+                    "status": "Particle Count",
+                    "date": "20/18/14",
+                    "recommendation": "Recommend side-stream filtration. Particle count has been trending at cautionary/severe levels for several months now."
+                },
+                {
+                    "asset": "ALP #4 H39/N40",
+                    "location": "PLAQUEMINE",
+                    "status": "Particle Count",
+                    "date": "20/19/17",
+                    "recommendation": "Resample & evaluate next month"
+                },
+                {
+                    "asset": "ALN #3 C-103 MAC",
+                    "location": "NORCO",
+                    "status": "High Copper",
+                    "date": "35 ppm",
+                    "recommendation": "Increasingly high copper, suggesting bearing or cooler failure. Inspect unit during next outage."
+                }
+            ];
+            const allData = {
+                curatedFor: {
+                    name: "Neil Steagall",
+                    company: "Air Liquide",
+                    phone: "225-235-6136",
+                    email: "Neil.steagall@airliquide.com"
+                },
+                curatedBy: {
+                    name: "Zack Walsh",
+                    company: "Firefly Reliability",
+                    phone: "563-419-3340",
+                    email: "zack@fireflyreliability.com"
+                },
+                locationDate: {
+                    location: "Air Liquide Louisiana Locations",
+                    date: "August 27, 2024"
+                },
+                groupData,
+                sampleData
+            };
+            
+        </script>
+        <style>
+            .container {
+                max-width: 800px;
+                margin: auto;
+                text-align: left;
+                color: #000;
+            }
 
-        .date-box {
-            display: block;
-            margin: 20px auto;
-            border: 1px solid black;
-            padding: 10px;
-            width: 300px;
-        }
+            h1 {
+                text-align: center;
+            }
 
-        .data-wrap {
-            display: flex;
-        }
-    </style>
+            .highlight {
+                background-color: lightblue;
+                font-weight: bold;
+            }
 
-    <div class="container basic-info">
-        <!-- Logo -->
-        <img src="https://placehold.co/300" alt="Lite Kit Logo" class="logo">
+            .logos {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 40px;
+            }
 
-        <!-- Title -->
-        <div class="title">LITE KIT</div>
+            .logos img {
+                max-height: 80px;
+            }
 
-        <!-- Information Boxes -->
-        <div class="data-wrap">
-            <div class="info-box" id="curatedFor"></div>
-            <div class="date-box" id="locationDate"></div>
-            <div class="info-box" id="curatedBy"></div>
+            .legend {
+                float: right;
+                text-align: center;
+                margin-top: -50px;
+                color: #000;
+            }
+
+            .legend img {
+                width: 120px;
+            }
+
+            .section-title {
+                font-weight: bold;
+                text-decoration: underline;
+                margin-top: 20px;
+            }
+
+            .list {
+                margin-left: 20px;
+            }
+        </style>
+        <style>
+            .basic-info {
+                padding: 20px;
+                text-align: center;
+            }
+
+            .logo {
+                width: 200px;
+                margin: 0 auto;
+            }
+
+            .title {
+                font-size: 32px;
+                font-weight: bold;
+                margin-top: 10px;
+                text-align: center;
+            }
+
+            .info-box {
+                display: inline-block;
+                border: 1px solid black;
+                padding: 10px;
+                text-align: left;
+                margin: 20px;
+            }
+
+            .date-box {
+                display: block;
+                margin: 70px auto 5px auto;
+                border: 1px solid black;
+                padding: 10px;
+                width: 300px;
+            }
+
+            .data-wrap {
+                display: flex;
+            }
+
+            .a4Page {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 80dvh;
+                height: 290mm;
+                flex-direction: column;
+            }
+
+            @media print {
+                .page-break {
+                    page-break-after: always;
+                }
+            }
+        </style>
+
+        <div class="container basic-info a4Page">
+            <!-- Logo -->
+            <img src="https://placehold.co/300" alt="Lite Kit Logo" class="logo">
+
+            <!-- Title -->
+            <div class="title">LITE KIT</div>
+
+            <!-- Information Boxes -->
+            <div class="data-wrap">
+                <div class="info-box" id="curatedFor"></div>
+                <div class="date-box" id="locationDate"></div>
+                <div class="info-box" id="curatedBy"></div>
+            </div>
         </div>
-    </div>
-    <div class="page-break"></div>
-    <!-- page break -->
+        <div class="page-break"></div>
+        <!-- page break -->
 
-    <div class="container">
-        <h1>Air Liquide – <span class="highlight">LA Oil Analysis Summary</span></h1>
-        <div class="logos">
-            <img src="https://placehold.co/100" alt="Air Liquide Logo">
-            <img src="https://placehold.co/100" alt="Sample Rank Legend">
-            <img src="https://placehold.co/100" alt="Lite Kit Logo">
+        <div class="container a4Page">
+            <h1>Air Liquide – <span class="highlight">LA Oil Analysis Summary</span></h1>
+            <div class="logos">
+                <img src="https://placehold.co/100" alt="Air Liquide Logo">
+                <img src="https://placehold.co/100" alt="Sample Rank Legend">
+                <img src="https://placehold.co/100" alt="Lite Kit Logo">
+            </div>
+
+            <div class="legend">
+            </div>
+
+            <h2 class="text-center">Quick Reference Guide</h2>
+
+            <div class="content-container">
+                <div class="section-title">What are some parameters that could categorize an oil sample as “Severe”?</div>
+                <ul class="list">
+                    <li>Assets categorized as needing immediate attention and/or close monitoring.</li>
+                    <li>Assets with particle counts of 21/x/x or higher are considered severe.</li>
+                    <li>Greater than or equal to 350 ppm of water.</li>
+                    <li>High levels of oxidation, varnish and/or acid number (MPC 28 or greater).</li>
+                </ul>
+
+                <div class="section-title">What are some parameters that could categorize an oil sample as “Cautionary”?</div>
+                <ul class="list">
+                    <li>Assets categorized as needing close monitoring for the next round of sampling.</li>
+                    <li>Assets with particle counts of 19/x/x – 20/x/x are considered cautionary.</li>
+                    <li>Greater than or equal to 250-349 ppm of water.</li>
+                    <li>High levels of oxidation, varnish and/or acid number (MPC 20-27).</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="legend">
+        <div class="page-break"></div>
+        <!-- page break -->
+
+        <div style="max-width: 1200px; padding: 1em; margin: auto;">
+            <h2>Summarty table</h2>
+            <table id="sampleTable">
+                <thead>
+                    <tr>
+                        <th>Asset#</th>
+                        <th>Company location</th>
+                        <th>Sample Date</th>
+                        <th>Severity</th>
+                        <th>Flagged fields</th>
+                        <th>Recommendation logic</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <div id="tables-container">
+                
+            </div>
         </div>
 
-        <h2 class="text-center">Quick Reference Guide</h2>
+        <script>
+            // Table configuration array
+            const tablesConfig = [
+                {
+                    id: "waterPpmTable",
+                    title: "Water PPM",
+                },
+                {
+                    id: "isoTable",
+                    title: "ISO Particles",
+                },
+                {
+                    id: "basicSampleTable",
+                    title: "Basic Sample Information",
+                },
+                {
+                    id: "wearTable",
+                    title: "Wear Type",
+                },
+                {
+                    id: "metalsTable",
+                    title: "Wear Metals",
+                },
+                {
+                    id: "additivesTable",
+                    title: "Additives",
+                },
+                {
+                    id: "contaminantsTable",
+                    title: "Contaminants",
+                },
+                {
+                    id: "physicalTable",
+                    title: "Physical / Chemical Properties",
+                },
+                {
+                    id: "varnishTable",
+                    title: "Varnish Potential",
+                    
+                },
+                {
+                    id: "oxidationTable",
+                    title: "Oxidation Potential",
+                },
+                {
+                    id: "waterTable",
+                    title: "Water Separability D1401",
+                },
+                {
+                    id: "foamTable",
+                    title: "Foam D892",
+                },
+                {
+                    id: "rustTable",
+                    title: "Rust Test",
+                },
+            ];
 
-        <div class="section-title">What are some parameters that could categorize an oil sample as “Severe”?</div>
-        <ul class="list">
-            <li>Assets categorized as needing immediate attention and/or close monitoring.</li>
-            <li>Assets with particle counts of 21/x/x or higher are considered severe.</li>
-            <li>Greater than or equal to 350 ppm of water.</li>
-            <li>High levels of oxidation, varnish and/or acid number (MPC 28 or greater).</li>
-        </ul>
+            // Function to generate a table
+            function generateTable(tableConfig, index = '') {
+                const container = document.getElementById("tables-container"); // Main div where tables will be added
 
-        <div class="section-title">What are some parameters that could categorize an oil sample as “Cautionary”?</div>
-        <ul class="list">
-            <li>Assets categorized as needing close monitoring for the next round of sampling.</li>
-            <li>Assets with particle counts of 19/x/x – 20/x/x are considered cautionary.</li>
-            <li>Greater than or equal to 250-349 ppm of water.</li>
-            <li>High levels of oxidation, varnish and/or acid number (MPC 20-27).</li>
-        </ul>
-    </div>
+                // Create section for the table
+                const section = document.createElement("div");
+                section.classList.add("table-section");
 
-    <div class="page-break"></div>
-    <!-- page break -->
+                if (tableConfig?.isChart) {
+                    const canvas = document.createElement("canvas");
+                    canvas.id = tableConfig.id + index;
+                    section.appendChild(canvas);
+                } else {
+                    // Create table
+                    const table = document.getElementById(`combined-table-${index}`);
+                    const tbody = document.createElement("tbody");
 
-    <div style="max-width: 1200px; padding: 1em; margin: auto;">
-        <!-- <h1>Oil Analysis Report</h1>
-        <table id="asset-table-all-detail">
-            <thead>
-                <tr>
-                    <th>Company</th>
-                    <th>company location</th>
-                    <th>asset Number</th>
-                    <th>Asset Make/Model</th>
-                    <th>Component</th>
-                </tr>
-            </thead>
-            <tbody> -->
-                <!-- Data will be inserted here dynamically -->
-            <!-- </tbody>
-        </table> -->
+                    tbody.id = tableConfig.id + index;
 
-        <!-- <h2>August “Severe” Assets</h2>
-        <table id="asset-table-body-1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Asset Name</th>
-                    <th>Asset Type</th>
-                    <th>Sample Date</th>
-                    <th>Sample Rank</th>
-                    <th>Flagged</th>
-                    <th>Field</th>
-                    <th>Recommended Action</th>
-                </tr>
-            </thead>
-            <tbody> -->
-                <!-- Data will be inserted here dynamically -->
-            <!-- </tbody>
-        </table> -->
+                    // Create thead
+                    const thead = document.createElement("thead");
+                    const headerRow = document.createElement("tr");
 
-        <h2>Summarty table</h2>
-        <table id="sampleTable">
-            <thead>
-                <tr>
-                    <th>Asset#</th>
-                    <th>Company location</th>
-                    <th>Sample Date</th>
-                    <th>Severity</th>
-                    <th>Flagged fields</th>
-                    <th>Recommendation logic</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+                    const fullWidthTh = document.createElement("th");
+                    fullWidthTh.textContent = tableConfig.title; // Change this to the desired heading
+                    fullWidthTh.colSpan = 7; // Span across all columns
+                    fullWidthTh.style.textAlign = "center"; // Center align text
+                    headerRow.appendChild(fullWidthTh);
 
-        <!-- <h2>Basic Sample Information</h2>
-        <table id="basicTable">
-            <thead>
-                <tr>
-                    <th>Date Sampled</th>
-                    <th>Severity</th>
-                    <th>Oil</th>
-                    <th>Oil Estimated</th>
-                    <th>Fluid Changed</th>
-                    <th>Sample Taken By</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table> -->
+                    table.appendChild(headerRow);
 
-        <div id="tables-container">
-        </div>
-    </div>
+                    // Create tbody
+                    table.appendChild(tbody);
 
-    <script>
-        // Table configuration array
-        const tablesConfig = [
-            // {
-            //     id: "oilPropertyChart",
-            //     title: "Chart",
-            //     isChart: false,
-            // },
-            // {
-            //     id: "asset-table-body",
-            //     title: "August “Cautionary” Assets",
-            //     headers: ["ID", "Asset Name", "Asset Type", "Sample Date", "Sample Rank", "Flagged", "Field", "Recommended Action"]
-            // },
-            // {
-            //     id: "basicTable",
-            //     title: "Basic Sample Information",
-            //     headers: ["Date Sampled", "Severity", "Oil", "Oil Estimated", "Fluid Changed", "Sample Taken By"]
-            // },
-            {
-                id: "isoTable",
-                title: "ISO Particles",
-                headers: ["Date Sampled", "ISO Code", "4μ", "6μ", "14μ", "26μ", "38μ", "70μ", "Temperature(°F)"]
-            },
-            {
-                id: "basicSampleTable",
-                title: "Basic Sample Information",
-                headers: ["Date Sampled", "Severity", "Oil", "Oil Estimated", "Fluid Changed", "Sample Taken By"]
-            },
-            {
-                id: "wearTable",
-                title: "Wear Type",
-                headers: ["Date Sampled", "Sliding", "Fiber", "Cutting", "Fatigue", "Unknown"]
-            },
-            {
-                id: "metalsTable",
-                title: "Wear Metals",
-                headers: ["Date Sampled", "Aluminium (Al)", "Iron (Fe)", "Copper (Cu)", "Lead (Pb)", "Tin (Sn)", "Chromium (Cr)", "Nickel (Ni)", "Titanium (Ti)", "Silver (Ag)", "Vanadium (V)", "Antimony (5b)", "Beryllium (Be)"]
-            },
-            {
-                id: "additivesTable",
-                title: "Additives",
-                headers: ["Date Sampled", "Calcium (Ca)", "Zinc (Zn)", "Phosphorus (P)", "Magnesium (Mg)", "Molybdenum (Mo)", "Boron (B)", "Barium (Ba)"]
-            },
-            {
-                id: "contaminantsTable",
-                title: "Contaminants",
-                headers: ["Date Sampled", "Sodium (Na) ppm", "Potassium (K) ppm", "Silicon (Si) ppm", "Lithium (Li) ppm", "Gril"]
-            },
-            {
-                id: "physicalTable",
-                title: "Physical / Chemical Properties",
-                headers: ["Date Sampled", "Visc 40°C", "Visc 100°C", "Visc Index", "Water %", "Oxidation Abs./0.1mmn", "Acid Number (FTIR)", "TAN", "IPH"]
-            },
-            {
-                id: "varnishTable",
-                title: "Varnish Potential",
-                headers: ["Date Sampled", "MPC"]
-            },
-            {
-                id: "oxidationTable",
-                title: "Oxidation Potential",
-                headers: ["Date Sampled", "RPVOT (150°C) min", "Ruler 16", "Ruler 1 Area", "Ruler 2%", "Ruler 2 Area"]
-            },
-            {
-                id: "waterTable",
-                title: "Water Separability D1401",
-                headers: ["Date Sampled", "Oil (ml)", "Water (ml)", "Emulsion (ml)", "Time To Endpoint (min)", "End Point Temperature (°C)", "Water Type", "Air Release (min)"]
-            },
-            {
-                id: "foamTable",
-                title: "Foam D892",
-                headers: ["Date Sampled", "Sequence 1 Tendency (ml)", "Sequence 1 Stability (ml)"]
-            },
-            {
-                id: "rustTable",
-                title: "Rust Test",
-                headers: ["Date Sampled", "Rust", "Duration (hr)", "Water Type", "Coupe Concession"]
-            },
+                    // Append table to the section
+                    section.appendChild(table);
+                }
+                // Append section to the main container
+                container.appendChild(section);
+            }
 
-        ];
+            // Generate all tables dynamically
+            function generateAllTables(index = '', reportData) {
 
-        // Function to generate a table
-        function generateTable(tableConfig, index = '') {
-            const container = document.getElementById("tables-container"); // Main div where tables will be added
+                const container = document.getElementById("tables-container"); // Main div where tables will be added
 
-            // Create section for the table
-            const section = document.createElement("div");
-            section.classList.add("table-section");
+                const infoDivWrap = document.createElement("div");
+                infoDivWrap.style.textAlign = 'left';
+                infoDivWrap.style.background = '#e8d8d8';
+                infoDivWrap.style.padding = '10px';
+                infoDivWrap.style.color = '#000';
+                infoDivWrap.style.marginTop = '50px';
 
-            // Create and add title
-            const title = document.createElement("h2");
-            title.textContent = tableConfig.title;
-            section.appendChild(title);
+                const infoDiv = document.createElement("div");
+                infoDiv.innerHTML = `
+                    <strong>Asset Number:</strong> ${reportData.assetNumber}<br>
+                    <strong>Asset Make/Model:</strong> ${reportData.assetMakeModel}<br>
+                    <strong>Component:</strong> ${reportData.component}<br>
+                    <strong>Sample Location:</strong> ${reportData.sampleLocation}<br>
+                `;
+                infoDivWrap.appendChild(infoDiv)
+                container.appendChild(infoDivWrap);
 
-            if (tableConfig?.isChart) {
-                const canvas = document.createElement("canvas");
-                canvas.id = tableConfig.id + index;
-                section.appendChild(canvas);
-            } else {
-                // Create table
+                const tableSection = document.createElement("div");
+                tableSection.className = "table-section";
+
                 const table = document.createElement("table");
-                table.id = tableConfig.id + index;
+                table.id = `combined-table-${index}`;
 
-                // Create thead
-                const thead = document.createElement("thead");
-                const headerRow = document.createElement("tr");
+                tableSection.appendChild(table);
+                container.appendChild(tableSection);
 
-                tableConfig?.headers?.forEach(headerText => {
-                    console.log('headerText', headerText)
-
-                    const th = document.createElement("th");
-                    if(headerText.includes('μ')){
-                        th.textContent = headerText;
-                    } else {
-                        th.textContent = headerText.toUpperCase();
-                    }
-                    headerRow.appendChild(th);
-                });
-
-                thead.appendChild(headerRow);
-                table.appendChild(thead);
-
-                // Create tbody
-                const tbody = document.createElement("tbody");
-                table.appendChild(tbody);
-
-                // Append table to the section
-                section.appendChild(table);
+                tablesConfig.forEach(config => generateTable(config, index));
             }
-            // Append section to the main container
-            container.appendChild(section);
-        }
 
-        // Generate all tables dynamically
-        function generateAllTables(index = '', reportData) {
-            // const reportData = {
-            //     reportTitle: "Firefly Lite Kit Report",
-            //     companyName: "Air Liquide",
-            //     companyLocation: "Louisiana Locations",
-            //     assetNumber: "AL-12345",
-            // };
+            function populateTable(tbodyId, columns, headers, index = '') {
+                const tableBody = document.querySelector(`#${tbodyId}${index}`);
+                tableBody.innerHTML = ""; // Clear previous data
+        
+                let originalData = index ? groupData[index] : data;
 
-            const container = document.getElementById("tables-container"); // Main div where tables will be added
-
-            const infoDivWrap = document.createElement("div");
-            infoDivWrap.style.textAlign = 'left';
-            infoDivWrap.style.background = '#e8d8d8';
-            infoDivWrap.style.padding = '10px';
-            infoDivWrap.style.color = '#000';
-            infoDivWrap.style.marginTop = '50px';
-
-            const infoDiv = document.createElement("div");
-            infoDiv.innerHTML = `
-                <strong>Asset Number:</strong> ${reportData.assetNumber}<br>
-                <strong>Asset Make/Model:</strong> ${reportData.assetMakeModel}<br>
-                <strong>Component:</strong> ${reportData.component}<br>
-                <strong>Sample Location:</strong> ${reportData.sampleLocation}<br>
-            `;
-            infoDivWrap.appendChild(infoDiv)
-            container.appendChild(infoDivWrap);
-
-            tablesConfig.forEach(config => generateTable(config, index));
-        }
-        function populateTable(tableId, columns, index = '') {
-            const tableBody = document.querySelector(`#${tableId}${index} tbody`);
-            tableBody.innerHTML = ""; // Clear previous data
-            if (index) {
-                groupData[index]?.forEach(item => {
-                    let row = "<tr>";
-                    columns.forEach(column => {
-                        row += `<td>${item[column] || "-"}</td>`;
+                if (!originalData || originalData.length === 0) return;
+                columns?.forEach((column, index) => {
+                    let row = `<tr><th>${headers[index]}</th>`; // Column names become row headers
+                    originalData?.slice(0, 6)?.forEach(item => {
+                        row += `<td>${item[column] || "-"}</td>`; // Data fills horizontally
                     });
                     row += "</tr>";
                     tableBody.innerHTML += row;
                 });
-            } else {
-                data?.forEach(item => {
-                    let row = "<tr>";
-                    columns.forEach(column => {
-                        row += `<td>${item[column] || "-"}</td>`;
-                    });
-                    row += "</tr>";
-                    tableBody.innerHTML += row;
-                });
+
             }
-        }
-        async function fetchReportData() {
-            try {
-                //generateAllTables()
-                //const response = await fetch('https://api.example.com/oil-analysis'); // Replace with your API URL
-                //const data = await response.json();
+            async function fetchReportData() {
+                try {
+                    //generateAllTables()
+                    //const response = await fetch('https://api.example.com/oil-analysis'); // Replace with your API URL
+                    //const data = await response.json();
 
-                document.getElementById("curatedFor").innerHTML = `
-                    <strong>Curated For:</strong><br>
-                    ${allData.curatedFor.name}<br>
-                    ${allData.curatedFor.company}<br>
-                    ${allData.curatedFor.phone}<br>
-                    <a href="mailto:${allData.curatedFor.email}">${allData.curatedFor.email}</a>
-                `;
-
-                document.getElementById("curatedBy").innerHTML = `
-                    <strong>Curated By:</strong><br>
-                    ${allData.curatedBy.name}<br>
-                    ${allData.curatedBy.company}<br>
-                    ${allData.curatedBy.phone}<br>
-                    <a href="mailto:${allData.curatedBy.email}">${allData.curatedBy.email}</a>
-                `;
-
-                document.getElementById("locationDate").innerHTML = `
-                    ${allData.locationDate.location}<br>
-                    ${allData.locationDate.date}
-                `;
-
-                const tableBody = document.getElementById("sampleTable");
-                allData.sampleData.forEach(item => {
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
-                        <td>${item?.asset}</td>
-                        <td>${item?.location}</td>
-                        <td>${item?.date_sampled}</td>
-                        <td>${item?.status}</td>
-                        <td>${item?.date}</td>
-                        <td>${item?.recommendation}</td>
+                    document.getElementById("curatedFor").innerHTML = `
+                        <strong>Curated For:</strong><br>
+                        ${allData.curatedFor.name}<br>
+                        ${allData.curatedFor.company}<br>
+                        ${allData.curatedFor.phone}<br>
+                        <a href="mailto:${allData.curatedFor.email}">${allData.curatedFor.email}</a>
                     `;
-                    tableBody?.appendChild(row);
-                });
 
-                // All detail Table
-                // const TableBody = document.querySelector("#asset-table-all-detail tbody");
-                // TableBody.innerHTML = "";
-                // data.forEach(item => {
-                //     TableBody.innerHTML += `
-                //         <tr>
-                //             <td>${item.company}</td>
-                //             <td>${item.company_location}</td>
-                //             <td>${item.asset_number}</td>
-                //             <td>${item.assets_make_model}</td>
-                //             <td>${item.component}</td>
-                //         </tr>
-                //     `;
-                // });
+                    document.getElementById("curatedBy").innerHTML = `
+                        <strong>Curated By:</strong><br>
+                        ${allData.curatedBy.name}<br>
+                        ${allData.curatedBy.company}<br>
+                        ${allData.curatedBy.phone}<br>
+                        <a href="mailto:${allData.curatedBy.email}">${allData.curatedBy.email}</a>
+                    `;
 
-                // Populate Basic Table
-                // const basicTableBody = document.querySelector("#basicTable tbody");
-                // basicTableBody.innerHTML = "";
-                // data?.forEach(item => {
-                //     basicTableBody.innerHTML += `
-                //         <tr>
-                //             <td>${item?.date_sampled}</td>
-                //             <td>${item?.severity}</td>
-                //             <td>${item?.oil_type}</td>
-                //             <td>${item?.oil_estimated_hours}</td>
-                //             <td>${item?.oilChanged}</td>
-                //             <td>${item?.sample_taken_by}</td>
-                //         </tr>
-                //     `;
-                // });
+                    document.getElementById("locationDate").innerHTML = `
+                        ${allData.locationDate.location}<br>
+                        ${allData.locationDate.date}
+                    `;
 
-                // populateTable("asset-table-body-1", ["id", "assetName", "assetType", "sampleDate", "sampleRank", "flagged", "field", "recommendedAction"]);
+                    const tableBody = document.getElementById("sampleTable");
+                    allData.sampleData.forEach(item => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${item?.asset}</td>
+                            <td>${item?.location}</td>
+                            <td>${item?.date_sampled}</td>
+                            <td>${item?.status}</td>
+                            <td>${item?.date}</td>
+                            <td>${item?.recommendation}</td>
+                        `;
+                        tableBody?.appendChild(row);
+                    });
 
-                groupData?.forEach((item, index) => {
-                    const reportData = {
-                        reportTitle: "Firefly Lite Kit Report",
-                        assetMakeModel: item[0]?.asset_make_model,
-                        component: item[0]?.component,
-                        companyName: item[0]?.company_name,
-                        sampleLocation: item[0]?.sample_location,
-                        assetNumber: item[0]?.asset_number,
-                    };
-                    generateAllTables(index, reportData)
-                    // Call function for each table
-                    populateTable("isoTable", ["date_sampled", "iso_code", "four_micron", "six_micron", "fourteen_micron", "twenty_six_micron", "thirty_eight_micron", "seventy_micron", "oil_temperature"], index);
-                    populateTable("basicSampleTable", ["date_sampled", "severity", "oil_type", "oil_estimated_hours", "oilChanged", "sample_taken_by"], index);
-                    populateTable("wearTable", ["date_sampled", "sliding", "fiber", "cutting", "fatigue", "unknown"], index);
-                    populateTable("metalsTable", ["date_sampled", "aluminium", "iron", "copper", "lead", "tin", "chromium", "nickel", "titanium", "silver", "vanadium", "antimony", "beryllium"], index);
-                    populateTable("additivesTable", ["date_sampled", "calcium", "zinc", "phosphorus", "magnesium", "molybdenum", "boron", "barium"], index);
-                    populateTable("contaminantsTable", ["date_sampled", "sodium", "potassium", "silicon", "lithium", "gril"], index);
-                    populateTable("physicalTable", ["date_sampled", "visc_fourty", "visc_hundred", "visc_index", "water_percentage", "acid_oxidation", "acid_number_ftir", "tan", "iph"], index);
-                    populateTable("varnishTable", ["date_sampled", "mpc_value"], index);
-                    populateTable("oxidationTable", ["date_sampled", "rpvot", "ruler_one_percent", "ruler_one_percent_area", "ruler_two_percent", "ruler_two_percent_area"], index);
-                    populateTable("waterTable", ["date_sampled", "oil_ml", "water_ml", "emulsion", "time_to_endpoint", "end_point", "water_separability_water_type", "air_release"], index);
-                    populateTable("foamTable", ["date_sampled", "sequence_1_tendency", "sequence_1_stability"], index);
-                    populateTable("rustTable", ["date_sampled", "rust", "duration", "rust_test_water_type", "copper_corrosion"], index);
+                    const tableMappings = [
+                        {
+                            name: "waterPpmTable",
+                            columns: ["date_sampled", "water_ppm"],
+                            headers: ["Date Sampled", "Water PPM"]
+                        },
+                        {
+                            name: "isoTable",
+                            columns: ["iso_code", "four_micron", "six_micron", "fourteen_micron", "twenty_six_micron", "thirty_eight_micron", "seventy_micron", "oil_temperature"],
+                            headers: ["ISO Code", "4μ", "6μ", "14μ", "26μ", "38μ", "70μ", "Temperature(°F)"]
+                        },
+                        {
+                            name: "basicSampleTable",
+                            columns: ["severity", "oil_type", "oil_estimated_hours", "oilChanged", "sample_taken_by"],
+                            headers: ["Severity", "Oil", "Oil Estimated", "Fluid Changed", "Sample Taken By"]
+                        },
+                        {
+                            name: "wearTable",
+                            columns: ["sliding", "fiber", "cutting", "fatigue", "unknown"],
+                            headers: ["Sliding", "Fiber", "Cutting", "Fatigue", "Unknown"]
+                        },
+                        {
+                            name: "metalsTable",
+                            columns: ["aluminium", "iron", "copper", "lead", "tin", "chromium", "nickel", "titanium", "silver", "vanadium", "antimony", "beryllium"],
+                            headers: ["Aluminium (Al)", "Iron (Fe)", "Copper (Cu)", "Lead (Pb)", "Tin (Sn)", "Chromium (Cr)", "Nickel (Ni)", "Titanium (Ti)", "Silver (Ag)", "Vanadium (V)", "Antimony (5b)", "Beryllium (Be)"]
+                        },
+                        {
+                            name: "additivesTable",
+                            columns: ["calcium", "zinc", "phosphorus", "magnesium", "molybdenum", "boron", "barium"],
+                            headers: ["Calcium (Ca)", "Zinc (Zn)", "Phosphorus (P)", "Magnesium (Mg)", "Molybdenum (Mo)", "Boron (B)", "Barium (Ba)"]
+                        },
+                        {
+                            name: "contaminantsTable",
+                            columns: ["sodium", "potassium", "silicon", "lithium", "gril"],
+                            headers: ["Sodium (Na) ppm", "Potassium (K) ppm", "Silicon (Si) ppm", "Lithium (Li) ppm", "Gril"]
+                        },
+                        {
+                            name: "physicalTable",
+                            columns: ["visc_fourty", "visc_hundred", "visc_index", "water_percentage", "acid_oxidation", "acid_number_ftir", "tan", "iph"],
+                            headers: ["Visc 40°C", "Visc 100°C", "Visc Index", "Water %", "Oxidation Abs./0.1mmn", "Acid Number (FTIR)", "TAN", "IPH"]
+                        },
+                        {
+                            name: "varnishTable",
+                            columns: ["mpc_value"],
+                            headers: ["MPC"]
+                        },
+                        {
+                            name: "oxidationTable",
+                            columns: ["rpvot", "ruler_one_percent", "ruler_one_percent_area", "ruler_two_percent", "ruler_two_percent_area"],
+                            headers: ["RPVOT (150°C) min", "Ruler 16", "Ruler 1 Area", "Ruler 2%", "Ruler 2 Area"]
+                        },
+                        {
+                            name: "waterTable",
+                            columns: ["oil_ml", "water_ml", "emulsion", "time_to_endpoint", "end_point", "water_separability_water_type", "air_release"],
+                            headers: ["Oil (ml)", "Water (ml)", "Emulsion (ml)", "Time To Endpoint (min)", "End Point Temperature (°C)", "Water Type", "Air Release (min)"]
+                        },
+                        {
+                            name: "foamTable",
+                            columns: ["sequence_1_tendency", "sequence_1_stability"],
+                            headers: ["Sequence 1 Tendency (ml)", "Sequence 1 Stability (ml)"]
+                        },
+                        {
+                            name: "rustTable",
+                            columns: ["rust", "duration", "rust_test_water_type", "copper_corrosion"],
+                            headers: ["Rust", "Duration (hr)", "Water Type", "Coupe Concession"]
+                        }
+                    ];
 
-                    // Populate Asset Tables
-                    //populateTable("asset-table-body-1", ["id", "assetName", "assetType", "sampleDate", "sampleRank", "flagged", "field", "recommendedAction"], index);
-                    //populateTable("asset-table-body", ["id", "assetName", "assetType", "sampleDate", "sampleRank", "flagged", "field", "recommendedAction"], index);
-
-                    // Oil Properties Chart (Example: Oil Temperature)
-                    // const chartElement = document.getElementById('oilPropertyChart' + index);
-
-                    // if (chartElement) {
-                    //     const oilPropertyChart = new Chart(chartElement, {
-                    //         type: 'line', // or 'bar'
-                    //         data: {
-                    //             labels: groupData[index].map(item => item.id),
-                    //             datasets: [{
-                    //                 label: 'Oil Temperature (°F)',
-                    //                 data: groupData[index].map(item => item.oil_temperature),
-                    //                 borderColor: 'blue',
-                    //                 tension: 0.4 // For smoother lines
-                    //             }]
-                    //         },
-                    //         options: {
-                    //             scales: {
-                    //                 y: {
-                    //                     beginAtZero: true
-                    //                 }
-                    //             },
-                    //             plugins: {
-                    //                 title: {
-                    //                     display: true,
-                    //                     text: 'Oil Properties (Oil Temperature)'
-                    //                 }
-                    //             }
-                    //         }
-                    //     });
-                    // }
-                })
-            } catch (error) {
-                console.error("Error fetching data:", error);
+                    groupData?.forEach((item, index) => {
+                        const reportData = {
+                            reportTitle: "Firefly Lite Kit Report",
+                            assetMakeModel: item[0]?.asset_make_model,
+                            component: item[0]?.component,
+                            companyName: item[0]?.company_name,
+                            sampleLocation: item[0]?.sample_location,
+                            assetNumber: item[0]?.asset_number,
+                        };
+                        
+                        generateAllTables(index, reportData);
+                        
+                        tableMappings?.forEach(({ name, columns, headers }) => populateTable(name, columns, headers, index));
+                    });
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
             }
-        }
-        window.onload = fetchReportData;
-    </script>
-
-</body>
-
+            window.onload = fetchReportData;
+        </script>
+    </body>
 </html>
