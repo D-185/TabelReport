@@ -10,12 +10,13 @@
                 /* Deep Teal */
                 --accent-color: #a06d2b;
                 /* Gold */
-                --text-color: #ababab;
+                --text-color: #FFFFFF;
                 --table-bg: #FFFFFF;
                 /* Light teal */
                 /* Teal */
-                --table-border: #80cbc4;
+                --table-border: #cbcbcb;
                 /* Soft Gray */
+                --th-background: #4e4d4d;
             }
 
             body {
@@ -71,13 +72,14 @@
             }
 
             th {
-                background-color: var(--table-header-bg);
+                background-color: var(--th-background);
                 color: var(--text-color);
                 width: 40px;
             }
 
             .tableHeaderWrap {
-                color: var(--accent-color);
+                color: #FFFFFF;
+                background-color: #000;
             }
 
             /* tr:hover {
@@ -111,7 +113,7 @@
                 }
 
                 th {
-                    background-color: var(--table-header-bg) !important;
+                    background-color: var(--th-background) !important;
                 }
             }
 
@@ -122,6 +124,7 @@
 
     <body>
         <script>
+            // color combinations red, yellow, green
             const groupData = [
                 [
                     {
@@ -133,9 +136,9 @@
                         "company_name": 'Air Liquide',
                         "water_ppm": 40000,
                         "flagged_fields": 'dummy1',
-                        "four_micron": 23,
-                        "six_micron": 23,
-                        "fourteen_micron": 44,
+                        "four_micron": {"value": 23, "color": "red"},
+                        "six_micron": {"value": 23, "color": "yellow"},
+                        "fourteen_micron": {"value": 44, "color": "green"},
                         "sliding": 43,
                         "fiber": 89,
                         "cutting": 4,
@@ -159,9 +162,9 @@
                         "acid_number_ftir": 0,
                         "acid_oxidation": 4,
                         "oil_ml": 5,
-                        "sequence_1_stability": 435,
+                        // "sequence_1_stability": 435,
                         "barium": 0,
-                        "sequence_1_tendency": 53,
+                        // "sequence_1_tendency": 53,
                         "boron": 0,
                         "copper": 0,
                         "lead": 0,
@@ -252,7 +255,7 @@
                         "tan": 0,
                         "thirty_eight_micron": 0,
                         "time_to_endpoint": 0,
-                        "twenty_six_micron": 0,
+                        "twenty_six_micron": 1,
                         "visc_fourty": 0,
                         "visc_hundred": 0,
                         "visc_index": 0,
@@ -268,9 +271,9 @@
                         "sample_location": "Reservoir",
                         "water_ppm": 20000,
                         "flagged_fields": 'dummy1',
-                        "four_micron": 12,
-                        "six_micron": 12,
-                        "fourteen_micron": 2,
+                        "four_micron": {"value": 12, "color": "yellow"},
+                        "six_micron": {"value": 12, "color": "green"},
+                        "fourteen_micron": {"value": 2, "color": "red"},
                         "sliding": 4,
                         "fiber": 8,
                         "cutting": 8,
@@ -294,9 +297,9 @@
                         "acid_number_ftir": 5,
                         "acid_oxidation": 6,
                         "oil_ml": 8,
-                        "sequence_1_stability": 6,
+                        // "sequence_1_stability": 6,
                         "barium": 5,
-                        "sequence_1_tendency": 5,
+                        // "sequence_1_tendency": 5,
                         "boron": 4,
                         "copper": 9,
                         "lead": 7,
@@ -429,9 +432,9 @@
                         "acid_number_ftir": 1,
                         "acid_oxidation": 1,
                         "oil_ml": 1,
-                        "sequence_1_stability": 1,
+                        // "sequence_1_stability": 1,
                         "barium": 1,
-                        "sequence_1_tendency": 1,
+                        // "sequence_1_tendency": 1,
                         "boron": 1,
                         "copper": 1,
                         "lead": 1,
@@ -524,9 +527,9 @@
                         "acid_number_ftir": 5,
                         "acid_oxidation": 4,
                         "oil_ml": 6,
-                        "sequence_1_stability": 8,
+                        // "sequence_1_stability": 8,
                         "barium": 3,
-                        "sequence_1_tendency": 7,
+                        // "sequence_1_tendency": 7,
                         "boron": 4,
                         "copper": 48,
                         "lead": 2,
@@ -619,9 +622,9 @@
                         "acid_number_ftir": 0.066,
                         "acid_oxidation": 0.026,
                         "oil_ml": -0.024,
-                        "sequence_1_stability": -0.019,
+                        // "sequence_1_stability": -0.019,
                         "barium": 0.02,
-                        "sequence_1_tendency": 0.025,
+                        // "sequence_1_tendency": 0.025,
                         "boron": 0.013,
                         "copper": -0.078,
                         "lead": 0.062,
@@ -713,9 +716,9 @@
                         "acid_number_ftir": -0.029,
                         "acid_oxidation": -0.025,
                         "oil_ml": -0.014,
-                        "sequence_1_stability": -0.161,
+                        // "sequence_1_stability": -0.161,
                         "barium": 0.016,
-                        "sequence_1_tendency": 0.012,
+                        // "sequence_1_tendency": 0.012,
                         "boron": 0.029,
                         "copper": -0.022,
                         "lead": 0.07,
@@ -807,9 +810,9 @@
                         "acid_number_ftir": 1,
                         "acid_oxidation": 1,
                         "oil_ml": 1,
-                        "sequence_1_stability": 1,
+                        // "sequence_1_stability": 1,
                         "barium": 1,
-                        "sequence_1_tendency": 1,
+                        // "sequence_1_tendency": 1,
                         "boron": 0,
                         "copper": 1,
                         "lead": 1,
@@ -901,9 +904,9 @@
                         "acid_number_ftir": 7.998,
                         "acid_oxidation": 8,
                         "oil_ml": 8,
-                        "sequence_1_stability": 8,
+                        // "sequence_1_stability": 8,
                         "barium": 8,
-                        "sequence_1_tendency": 5.998,
+                        // "sequence_1_tendency": 5.998,
                         "boron": 8,
                         "copper": 8,
                         "lead": 8,
@@ -994,7 +997,7 @@
                         "acid_number_ftir": 0,
                         "acid_oxidation": 0,
                         "oil_ml": 0,
-                        "sequence_1_stability": 0,
+                        // "sequence_1_stability": 0,
                         "barium": 0,
                         "sequence_1_tendency": 0,
                         "boron": 0,
@@ -1092,9 +1095,9 @@
                         "acid_number_ftir": 0,
                         "acid_oxidation": 4,
                         "oil_ml": 5,
-                        "sequence_1_stability": 435,
+                        // "sequence_1_stability": 435,
                         "barium": 0,
-                        "sequence_1_tendency": 53,
+                        // "sequence_1_tendency": 53,
                         "boron": 0,
                         "copper": 0,
                         "lead": 0,
@@ -1227,9 +1230,9 @@
                         "acid_number_ftir": 5,
                         "acid_oxidation": 6,
                         "oil_ml": 8,
-                        "sequence_1_stability": 6,
+                        // "sequence_1_stability": 6,
                         "barium": 5,
-                        "sequence_1_tendency": 5,
+                        // "sequence_1_tendency": 5,
                         "boron": 4,
                         "copper": 9,
                         "lead": 7,
@@ -1362,9 +1365,9 @@
                         "acid_number_ftir": 1,
                         "acid_oxidation": 1,
                         "oil_ml": 1,
-                        "sequence_1_stability": 1,
+                        // "sequence_1_stability": 1,
                         "barium": 1,
-                        "sequence_1_tendency": 1,
+                        // "sequence_1_tendency": 1,
                         "boron": 1,
                         "copper": 1,
                         "lead": 1,
@@ -1457,9 +1460,9 @@
                         "acid_number_ftir": 5,
                         "acid_oxidation": 4,
                         "oil_ml": 6,
-                        "sequence_1_stability": 8,
+                        // "sequence_1_stability": 8,
                         "barium": 3,
-                        "sequence_1_tendency": 7,
+                        // "sequence_1_tendency": 7,
                         "boron": 4,
                         "copper": 48,
                         "lead": 2,
@@ -1552,9 +1555,9 @@
                         "acid_number_ftir": 0.066,
                         "acid_oxidation": 0.026,
                         "oil_ml": -0.024,
-                        "sequence_1_stability": -0.019,
+                        // "sequence_1_stability": -0.019,
                         "barium": 0.02,
-                        "sequence_1_tendency": 0.025,
+                        // "sequence_1_tendency": 0.025,
                         "boron": 0.013,
                         "copper": -0.078,
                         "lead": 0.062,
@@ -1646,9 +1649,9 @@
                         "acid_number_ftir": -0.029,
                         "acid_oxidation": -0.025,
                         "oil_ml": -0.014,
-                        "sequence_1_stability": -0.161,
+                        // "sequence_1_stability": -0.161,
                         "barium": 0.016,
-                        "sequence_1_tendency": 0.012,
+                        // "sequence_1_tendency": 0.012,
                         "boron": 0.029,
                         "copper": -0.022,
                         "lead": 0.07,
@@ -1740,9 +1743,9 @@
                         "acid_number_ftir": 1,
                         "acid_oxidation": 1,
                         "oil_ml": 1,
-                        "sequence_1_stability": 1,
+                        // "sequence_1_stability": 1,
                         "barium": 1,
-                        "sequence_1_tendency": 1,
+                        // "sequence_1_tendency": 1,
                         "boron": 0,
                         "copper": 1,
                         "lead": 1,
@@ -1834,9 +1837,9 @@
                         "acid_number_ftir": 7.998,
                         "acid_oxidation": 8,
                         "oil_ml": 8,
-                        "sequence_1_stability": 8,
+                        // "sequence_1_stability": 8,
                         "barium": 8,
-                        "sequence_1_tendency": 5.998,
+                        // "sequence_1_tendency": 5.998,
                         "boron": 8,
                         "copper": 8,
                         "lead": 8,
@@ -1927,9 +1930,9 @@
                         "acid_number_ftir": 0,
                         "acid_oxidation": 0,
                         "oil_ml": 0,
-                        "sequence_1_stability": 0,
+                        // "sequence_1_stability": 0,
                         "barium": 0,
-                        "sequence_1_tendency": 0,
+                        // "sequence_1_tendency": 0,
                         "boron": 0,
                         "copper": 0,
                         "lead": 0,
@@ -2056,10 +2059,12 @@
                 flex-direction: row;
                 align-items: center;
                 margin-bottom: 30px;
+                gap: 2%
             }
             .chart-section canvas {
-                width: 50% !important;
+                width: 49% !important;
                 height: 50% !important;
+                background: linear-gradient(to bottom, #4f4e4e, #4f4e4e, #4f4e4e);
             }
 
             h1 {
@@ -2293,7 +2298,7 @@
             // Table configuration array
             const tablesConfig = [
                 {
-                    id: "oilPropertyChart",
+                    id: "waterPpmChart",
                     title: "Chart",
                     isChart: true,
                 },
@@ -2304,10 +2309,6 @@
                 },
                 {
                     id: "combinedTableHead",
-                },
-                {
-                    id: "waterPpmTable",
-                    title: "Water PPM",
                 },
                 {
                     id: "isoTable",
@@ -2360,7 +2361,18 @@
                 },
             ];
             let chartInstances = {};
-
+            function getSeverityColor(severity) {
+                switch (severity) {
+                case "red":
+                    return "#ed8c8c";
+                case "yellow":
+                    return "#f3f3b0";
+                case "green":
+                    return "#87e387";
+                default:
+                    return "transparent";
+                }
+            }
             // Function to generate a table
             function generateTable(tableConfig, index = '') {
                 const container = document.getElementById("tables-container"); // Main div where tables will be added
@@ -2370,9 +2382,6 @@
 
                 if (tableConfig?.isChart) {
                     const chartDiv = document.getElementById(`combined-chart-${index}`);
-
-                    console.log('index', index, 'tableConfig', tableConfig)
-
                     chartDiv.classList.add("chart-section");
                     const canvasId = tableConfig.id + index;
 
@@ -2482,10 +2491,18 @@
                         row = `<tr><th>${headers[indexTemp]}</th>`; // Column names become row headers
                     }
                     originalData?.slice(0, 6)?.forEach(item => {
+                        const cellValue = (typeof item[column] === 'object' && item[column] !== null) 
+                            ? item[column].value 
+                            : item[column] || "-";
+
+                        const cellStyle = (typeof item[column] === 'object' && item[column] !== null && item[column].color)
+                            ? `background-color: ${getSeverityColor(item[column].color)};`
+                            : '';
+
                         if(column === "date_sampled"){
                             row += `<th>${item[column] || "-"}</th>`;
                         } else {
-                            row += `<td>${item[column] || "-"}</td>`; // Data fills horizontally
+                            row += `<td style="${cellStyle}">${cellValue || "-"}</td>`; // Data fills horizontally
                         }
                     });
                     row += "</tr>";
@@ -2540,29 +2557,12 @@
                         })
 
                     });
-                    function getSeverityColor(severity) {
-                        switch (severity) {
-                        case "red":
-                            return "#ed8c8c";
-                        case "yellow":
-                            return "#f3f3b0";
-                        case "green":
-                            return "#87e387";
-                        default:
-                            return "transparent"; // Default background
-                        }
-                    }
 
                     const tableMappings = [
                         {
                             name: "combinedTableHead",
                             columns: ["date_sampled"],
                             headers: ["Date Sampled"]
-                        },
-                        {
-                            name: "waterPpmTable",
-                            columns: ["water_ppm"],
-                            headers: ["Water PPM"]
                         },
                         {
                             name: "isoTable",
@@ -2639,27 +2639,51 @@
                         generateAllTables(index, reportData);
 
                         tableMappings?.forEach(({ name, columns, headers }) => populateTable(name, columns, headers, index));
-                        const oilPropertyChart = new Chart(document.getElementById('oilPropertyChart' + index), {
+                        const waterPpmChart = new Chart(document.getElementById('waterPpmChart' + index), {
                             type: 'line', // or 'bar'
                             data: {
-                                labels: groupData[index].map(item => item.date_sampled),
+                                labels: groupData[index]?.slice(0, 6)?.map(item => item.date_sampled),
                                 datasets: [{
                                     label: 'Water PPM',
-                                    data: groupData[index].map(item => item.water_ppm),
-                                    borderColor: 'green',
+                                    data: groupData[index]?.slice(0, 6)?.map(item => item.water_ppm),
+                                    borderColor: '#4cac50',
                                     tension: 0.4 // For smoother lines
                                 }]
                             },
                             options: {
                                 scales: {
                                     y: {
-                                        beginAtZero: true
+                                        beginAtZero: true,
+                                        ticks: {
+                                            color: 'white' // Make Y-axis text white
+                                        },
+                                        grid: {
+                                            color: 'rgba(255, 255, 255, 0.2)' // Optional: Lighten the grid lines to make them more visible
+                                        },
+                                        border: {
+                                            color: 'transparent', // Make the X-axis line transparent
+                                            width: 0, // Hide the line completely
+                                        }
+                                    },
+                                    x: {
+                                        ticks: {
+                                            color: 'white' // Make X-axis text white
+                                        },
+                                        grid: {
+                                            color: 'transparent', // Optional: Lighten the grid lines to make them more visible
+                                        },
                                     }
                                 },
                                 plugins: {
                                     title: {
                                         display: true,
-                                        text: 'Water PPM'
+                                        text: 'Water PPM',
+                                        color: 'white'
+                                    },
+                                    legend: {
+                                        labels: {
+                                            color: 'white'
+                                        }
                                     }
                                 }
                             }
@@ -2668,26 +2692,38 @@
                         const isoParticleChart = new Chart(document.getElementById('isoParticleChart' + index), {
                             type: 'line', // or 'bar'
                             data: {
-                                labels: groupData[index].map(item => item.date_sampled), // X-axis labels (dates)
+                                labels: groupData[index]?.slice(0, 6)?.map(item => item.date_sampled), // X-axis labels (dates)
                                 datasets: [
                                     {
                                         label: "4μ",
-                                        data: groupData[index].map(item => item.four_micron), // Data for Sample 1
-                                        borderColor: 'red',
+                                        data: groupData[index]?.slice(0, 6)?.map(item =>
+                                            typeof item.four_micron === 'object' && item.four_micron !== null 
+                                                ? item.four_micron.value 
+                                                : item.four_micron
+                                        ),
+                                        borderColor: '#bf0000',
                                         tension: 0.4, // For smoother lines
-                                        fill: false
+                                        fill: false,
                                     },
                                     {
                                         label: "6μ",
-                                        data: groupData[index].map(item => item.six_micron), // Data for Sample 2
-                                        borderColor: 'orange',
+                                        data: groupData[index]?.slice(0, 6)?.map(item =>
+                                            typeof item.six_micron === 'object' && item.six_micron !== null 
+                                                ? item.six_micron.value 
+                                                : item.six_micron
+                                        ),
+                                        borderColor: '#e2782f',
                                         tension: 0.4, // For smoother lines
                                         fill: false
                                     },
                                     {
                                         label: "14μ",
-                                        data: groupData[index].map(item => item.fourteen_micron), // Data for Sample 3
-                                        borderColor: 'yellow',
+                                        data: groupData[index]?.slice(0, 6)?.map(item =>
+                                            typeof item.fourteen_micron === 'object' && item.fourteen_micron !== null 
+                                                ? item.fourteen_micron.value 
+                                                : item.fourteen_micron
+                                            ),
+                                        borderColor: '#f8bb00',
                                         tension: 0.4, // For smoother lines
                                         fill: false
                                     }
@@ -2696,15 +2732,39 @@
                             options: {
                                 scales: {
                                     y: {
-                                        beginAtZero: true
+                                        beginAtZero: true,
+                                        ticks: {
+                                            color: 'white' // Make Y-axis text white
+                                        },
+                                        grid: {
+                                            color: 'rgba(255, 255, 255, 0.2)' // Optional: Lighten the grid lines to make them more visible
+                                        },
+                                        border: {
+                                            color: 'transparent', // Make the X-axis line transparent
+                                            width: 0, // Hide the line completely
+                                        }
+                                    },
+                                    x: {
+                                        ticks: {
+                                            color: 'white' // Make X-axis text white
+                                        },
+                                        grid: {
+                                            color: 'transparent' // Optional: Lighten the grid lines to make them more visible
+                                        }
                                     }
                                 },
                                 plugins: {
                                     title: {
                                         display: true,
-                                        text: 'ISO Particle Count'
+                                        text: 'ISO Particle Count',
+                                        color: 'white'
+                                    },
+                                    legend: {
+                                        labels: {
+                                            color: 'white'
+                                        }
                                     }
-                                }
+                                },
                             }
                         });
 
