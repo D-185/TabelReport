@@ -2112,11 +2112,14 @@
             ];
 
             function getFilteredTableMappings(tableMappings, groupData) {
-                // Flatten groupData into a single array of objects
                 const flattenedGroupData = groupData;
-                return tableMappings.filter(({ columns }) => {
-                    return columns.some(column => {
-                        return flattenedGroupData?.slice(0, 6)?.some(row => {
+                const hasBaseLineFirst = flattenedGroupData.length > 0 && flattenedGroupData[0]?.date_sampled === 'Baseline';
+                return tableMappings?.filter(({ columns }, index) => {
+                    return columns?.some(column => {
+                        return flattenedGroupData?.slice(0, 6)?.some((row, rowIndex) => {
+                            if (hasBaseLineFirst && rowIndex === 0) {
+                                return false;
+                            }
                             const value = row[column]
                             return value !== undefined && value !== null && value !== '';
                         });
