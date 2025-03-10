@@ -129,11 +129,11 @@
                 [
                     {
                         "id": 78,
-                        "asset_number": "INVIO TN27996",
-                        "asset_make_model": "Mazak/805G",
-                        "component": 168,
-                        "sample_location": "Louisiana Locations",
-                        "company_name": 'Air Liquide',
+                        "asset_number": "",
+                        "asset_make_model": "",
+                        "component": '',
+                        "sample_location": "",
+                        "company_name": '',
                         "water_ppm": 40000,
                         "flagged_fields": 'dummy1',
                         "four_micron": {"value": 23, "color": "red"},
@@ -1993,6 +1993,7 @@
                     }
                 ],
             ]
+            const companyLogoUrl = "https://fireflys3bucket-prod.s3.amazonaws.com/company_icons/AL/download_2.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZHIAD7IB2VIXE4FJ%2F20250310%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250310T072353Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=0c2176e46c64fb251a0c0f369d023cf6e9c8f90d7ce3da6f8f5a3e369d6deebb"
             const sampleData = [
                 {
                     "asset": "ALG Cogen",
@@ -2248,6 +2249,50 @@
                 justify-content: space-between;
             }
 
+            .companyLogoWrap{
+                width: 290px;
+                height: 190px;
+            }
+
+            .companyLogoWrap img{
+                width: 100%;
+                height: 100%;
+                max-height: unset;
+                object-fit: contain;
+            }
+
+            .logoWrapSecond{
+                width: 100px;
+                height: 100px;
+            }
+
+            .logoWrapSecond img{
+                width: 100%;
+                height: 100%;
+            }
+
+            /* .tableScaleWrap{
+                
+            } */
+
+            .tableScaleWrap .scaleWrap {
+                border: 1px solid #000000;
+                padding: 4px 5px;
+                font-size: 16px;
+            }
+
+            .tableScaleWrap .scaleColorRed {
+                background-color: #ed8c8c;
+            }
+
+            .tableScaleWrap .scaleColorYellow {
+                background-color: #f3f3b0;
+            }
+
+            .tableScaleWrap .scaleColorGreen {
+                background-color: #87e387;
+            }
+
             @media print {
                 .page-break {
                     page-break-after: always;
@@ -2276,9 +2321,19 @@
         <div class="container a4Page">
             <h1>Air Liquide – <span class="highlight">LA Oil Analysis Summary</span></h1>
             <div class="logos">
-                <img src="https://placehold.co/100" alt="Air Liquide Logo">
-                <img src="https://placehold.co/100" alt="Sample Rank Legend">
-                <img src="https://placehold.co/100" alt="Lite Kit Logo">
+                <div class="companyLogoWrap">
+                    <img id="dynamicCompanyLogo" src={companyLogoUrl} alt="Air Liquide Logo">
+                </div>
+                <div id="dynamicSvgSecond" alt="Lite Kit Logo" class="logoWrapSecond">
+                </div>
+                <!-- <img src="https://placehold.co/100" alt="Sample Rank Legend"> -->
+                <!-- <img src="https://placehold.co/100" alt="Lite Kit Logo"> -->
+                 <div class="tableScaleWrap">
+                    <div class="scaleWrap">Sample Rank Legend</div>
+                    <div class="scaleWrap scaleColorRed">Severe</div>
+                    <div class="scaleWrap scaleColorYellow">Caution</div>
+                    <div class="scaleWrap scaleColorGreen">Acceptable</div>
+                 </div>
             </div>
 
             <div class="legend">
@@ -2374,6 +2429,8 @@
 
             const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodedSvg}`;
             document.getElementById("dynamicSvg").innerHTML  = svgIcon;
+            document.getElementById("dynamicSvgSecond").innerHTML  = svgIcon;
+            document.getElementById("dynamicCompanyLogo").src = companyLogoUrl;
         </script>
         <!-- logo svg image end -->
 
@@ -2642,13 +2699,14 @@
                     });
                     
                     groupData?.forEach((item, index) => {
+                        console.log('item', item)
                         const reportData = {
                             reportTitle: "Firefly Lite Kit Report",
-                            assetMakeModel: item[0]?.asset_make_model,
-                            component: item[0]?.component,
-                            companyName: item[0]?.company_name,
-                            sampleLocation: item[0]?.sample_location,
-                            assetNumber: item[0]?.asset_number,
+                            assetMakeModel: item[item?.length -1]?.asset_make_model,
+                            component: item[item?.length -1]?.component,
+                            companyName: item[item?.length -1]?.company_name,
+                            sampleLocation: item[item?.length -1]?.sample_location,
+                            assetNumber: item[item?.length -1]?.asset_number,
                         };
                         const filteredTableMappings = getFilteredTableMappings(tableMappings, groupData[index]);
 
